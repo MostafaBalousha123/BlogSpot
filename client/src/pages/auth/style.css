@@ -1,0 +1,36 @@
+
+.auth-container{
+  border:  red 2px solid;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.auth-container .image-container{
+  border:  red 2px solid;
+  height: 100vh;
+  width: 45%;
+}
+.auth-container .form-container{
+  border:  #30363d 1px solid;
+  width:35%;
+  /* background-color:#161b22; */
+  padding:  30px;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+.auth-container .form-container .text-field {
+  display: block;
+  margin: 20px auto;
+  width: 90%;
+  color:  white !important;
+  border: 1px #30363d solid;
+}
+.auth-container .form-container .form-title{
+  width: max-content;
+  margin: 0 auto;
+}
+
