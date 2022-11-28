@@ -1,20 +1,19 @@
-import Cookies from 'universal-cookie';
+import Cookies from 'universal-cookie'
 
-const cookies = new Cookies();
+const cookies = new Cookies()
 
-export class JwtServices{
-  private static token = "token";
+export class JwtServices {
+  private static token = 'token'
 
-  public static getToken(){
+  public static getToken():any {
     return cookies.get(this.token)
   }
 
-  public static setToken(accessToken:string){
-    return  cookies.set(this.token, accessToken);
+  public static setToken(accessToken:string):any {
+    return cookies.set(this.token, accessToken)
   }
 
-  public static removeToken(){
+  public static removeToken() :any {
     return cookies.remove(this.token)
   }
-
 }

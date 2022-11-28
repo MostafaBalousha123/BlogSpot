@@ -1,9 +1,9 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { toast } from 'react-toastify'
-import {JwtServices} from './jwtServices'
+import { JwtServices } from './jwtServices'
 
 class ApiService {
-  private static axios = axios;
+  private static axios = axios
 
   public static init(): void {
     this.axios.defaults.baseURL = process.env.REACT_APP_BASE_URL
@@ -19,7 +19,7 @@ class ApiService {
   public static setHeader(): void {
     this.axios
       .defaults.headers.common.Authorization = `Bearer ${JwtServices.getToken()}`
-      this.axios.defaults.headers.common.Accept = 'application/json'
+    this.axios.defaults.headers.common.Accept = 'application/json'
     this.axios.defaults.headers.common['Content-Type'] = 'application/json'
   }
 
