@@ -1,0 +1,76 @@
+  .introduction{
+    border: 2px black solid;
+    height: 90vh;
+    background-image:url('../../assets/image/BGlanding.png');
+
+  }
+
+  .get-started{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .get-started .first{
+    width: 47%;
+  }
+
+  .brief-container{
+    width: 90%;
+    padding: 15px 25px;
+  }
+
+
+  .brief-container p {
+    color: #E5E7EB ;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .brief-container button {
+    color: #e7e2e2df ;
+    background-image: linear-gradient(to right,#3B82F6, #D946EF) !important;
+    margin: 20px 0;
+    padding: 5 15px;
+  }
+
+  .statistics-container{
+    display: flex;
+    justify-content: flex-start;
+    margin: 30px;
+    flex-wrap: wrap;
+
+
+  }
+  .statistics-container p{
+    padding: 5px 35px;
+    width: 65px;
+    text-align: center;
+    margin: 0 10px;
+    color: #e7e2e2;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin-top: 10px;
+  }
+
+  .statistics-container span{
+    display: block;
+    font-weight: 700;
+    color: #eff0f2;
+
+  }
+
+  .image-container{
+    width: 50%;
+    min-width: 500px;
+  }
+
+  .image-container img{
+    object-fit: cover;
+    width:90%;
+    height: 80vh;
+    display: block;
+    margin: 0 auto;
+
+  }

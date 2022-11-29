@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import './style.css'
-import { Box, TextField } from '@mui/material'
+import { Box, TextField, Button } from '@mui/material'
 
 export const Signup:FC = () => (
   <Box className="auth-container">
@@ -11,17 +11,8 @@ export const Signup:FC = () => (
     <Box className="form-container">
       <h2 className="form-title">Get Started</h2>
       <TextField
-        label="email"
-        type="email"
-        size="small"
-        variant="filled"
-        fullWidth
-        className="text-field"
-        color="primary"
-      />
-      <TextField
         id="outlined-basic"
-        variant="filled"
+        variant="outlined"
         label="username"
         size="small"
         fullWidth
@@ -29,19 +20,27 @@ export const Signup:FC = () => (
         color="primary"
       />
       <TextField
+        label="email"
+        type="email"
+        size="small"
+        variant="outlined"
+        fullWidth
+        className="text-field"
+        color="primary"
+      />
+      <TextField
         id="outlined-basic"
-        variant="filled"
+        variant="outlined"
         label="password"
         type="password"
         size="small"
         fullWidth
         className="text-field"
         color="primary"
-        sx={{ backgroundColor: 'black' }}
       />
       <TextField
         id="outlined-basic"
-        variant="filled"
+        variant="outlined"
         label="profile image"
         type="url"
         size="small"
@@ -49,6 +48,9 @@ export const Signup:FC = () => (
         className="text-field"
         color="primary"
       />
+
+      <Button variant="contained">Contained</Button>
+
     </Box>
   </Box>
 )
