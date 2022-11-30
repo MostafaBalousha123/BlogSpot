@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import {
   AppBar, Box, Toolbar, Typography, IconButton,
@@ -14,6 +15,7 @@ import { sxStyle } from './style'
 const Navbar:FC = () => {
   const [auth] = React.useState(false)
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+  const navigate = useNavigate()
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>):void => {
     setAnchorEl(event.currentTarget)
@@ -37,6 +39,7 @@ const Navbar:FC = () => {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
+            onClick={() => { navigate('/') }}
           >
             LOGO
             {' '}
@@ -53,15 +56,30 @@ const Navbar:FC = () => {
           </Search>
 
           <Box className="tabs-container">
-            <Typography variant="h6" component="div" className="nav-btn">
+            <Typography
+              variant="h6"
+              component="div"
+              className="nav-btn"
+              onClick={() => { navigate('/') }}
+            >
               Home
             </Typography>
 
-            <Typography variant="h6" component="div" className="nav-btn">
+            <Typography
+              variant="h6"
+              component="div"
+              className="nav-btn"
+              onClick={() => { navigate('/blogs') }}
+            >
               Blogs
             </Typography>
 
-            <Typography variant="h6" component="div" className="nav-btn">
+            <Typography
+              variant="h6"
+              component="div"
+              className="nav-btn"
+              onClick={() => { navigate('/photos') }}
+            >
               Photos
             </Typography>
           </Box>
@@ -92,14 +110,31 @@ const Navbar:FC = () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={() => {
+                  handleClose()
+                  navigate('/users/1')
+                }}
+                >
+                  Profile
+                </MenuItem>
+                <MenuItem onClick={() => {
+                  handleClose()
+                  navigate('/')
+                }}
+                >
+                  My account
+                </MenuItem>
               </Menu>
             </div>
           ) : (
             <Box className="auth-btns">
-              <Button className="signin-btn">Login</Button>
-              <Button className="signup-btn">Sign Up</Button>
+              <Button className="signin-btn" onClick={() => { navigate('/signin') }}>Login</Button>
+              <Button
+                className="signup-btn"
+                onClick={() => { navigate('/signup') }}
+              >
+                Sign Up
+              </Button>
             </Box>
           )}
         </Toolbar>

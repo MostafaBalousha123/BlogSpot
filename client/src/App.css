@@ -5,9 +5,16 @@ body{
   padding: 0;
   font-family: 'Inter', sans-serif;
   box-sizing: border-box;
-  /* color: #2a2a2a; */
   color: #ececec;
-
-
   background-color: #111827;
 }
+
+input:-webkit-autofill { 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: #ececec;
+
+}
+input{
+  color: #ececec !important;
+}
+

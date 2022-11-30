@@ -5,7 +5,9 @@ import {
   RouterProvider,
 } from 'react-router-dom'
 import './App.css'
-import { Signin, Signup, HomePage } from './pages'
+import {
+  Signin, Signup, HomePage, Blogs, Photos, Profile,
+} from './pages'
 
 const router = createBrowserRouter([
   {
@@ -19,6 +21,22 @@ const router = createBrowserRouter([
   {
     path: '/signup',
     element: <Signup />,
+  },
+  {
+    path: '/blogs',
+    element: <Blogs />,
+  },
+  {
+    path: '/blogs/:id',
+    element: <Blogs />,
+  },
+  {
+    path: '/photos',
+    element: <Photos />,
+  },
+  {
+    path: '/users/:id',
+    element: <Profile />,
   },
   {
     path: '*',
