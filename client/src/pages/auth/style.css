@@ -6,9 +6,14 @@
   align-items: center;
   background-image: url('../../assets/image/BGauth.png');
   background-size: cover;
+  position: relative;
 
 }
-
+.auth-container .logo{
+  position: absolute ;
+  top: 40px;
+  left: 40px;
+}
 .auth-container .form-container{
   width:45%;
   padding:  0 30px;
@@ -19,11 +24,11 @@
 .auth-container .form-container Button.sign-up-btn{
   display: block;
   margin: 20px auto;
-  width: 70%;
+  width: 65%;
 
 }
 .auth-container .form-container .form-title{
-  width: 70%;
+  width: 65%;
   margin: 0 auto;
 }
 

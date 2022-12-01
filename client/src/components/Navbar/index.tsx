@@ -42,7 +42,6 @@ const Navbar:FC = () => {
             onClick={() => { navigate('/') }}
           >
             LOGO
-            {' '}
           </IconButton>
 
           <Search>

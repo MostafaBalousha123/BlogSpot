@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import './style.css'
 import {
-  Box, Button,
+  Box, Button, IconButton,
 } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { styledComponents } from './style'
@@ -11,6 +11,17 @@ export const Signup:FC = () => {
   const navigate = useNavigate()
   return (
     <Box className="auth-container">
+      <IconButton
+        className="logo"
+        size="large"
+        edge="start"
+        color="inherit"
+        aria-label="menu"
+        sx={{ mr: 2 }}
+        onClick={() => { navigate('/') }}
+      >
+        LOGO
+      </IconButton>
       <Box className="form-container">
         <Box className="form-title">
           <p>START FOR FREE</p>
