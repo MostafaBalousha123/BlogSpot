@@ -2,43 +2,42 @@
 .auth-container{
   height: 100vh;
   display: flex;
-  justify-content: space-between;
-  flex-direction: row-reverse;
+  justify-content: flex-start;
   align-items: center;
-  border: 2px solid white;
-  /* background-image: linear-gradient(to right, rgba(245, 246, 252, 0.52), rgba(117, 19, 93, 0.73)), url('../../assets/image/verticalGrid.png'); */
-
-
+  background-image: url('../../assets/image/BGauth.png');
   background-size: cover;
 
 }
 
-
-.auth-container .image-container{
-  border:  red 2px solid;
-  height: 100vh;
-  width: 45%;
-}
-
-
 .auth-container .form-container{
-  width:35%;
-  padding:  30px;
-  margin: 0 auto;
+  width:45%;
+  padding:  0 30px;
   border-radius: 5px;
 }
 
 .auth-container .form-container .text-field ,
-.auth-container .form-container Button{
+.auth-container .form-container Button.sign-up-btn{
   display: block;
   margin: 20px auto;
   width: 70%;
+
 }
 .auth-container .form-container .form-title{
-  width: max-content;
+  width: 70%;
   margin: 0 auto;
 }
 
-.auth-container .form-container Button{
+.auth-container .form-container .form-title p , 
+.auth-container .form-container .form-title h1{
+  margin: 10px  0 !important;
+}
+
+.auth-container .form-container .form-title p {
+color: #e5e7ebc7;
+font-size: 13px;
+}
+
+
+.auth-container .form-container Button.sign-up-btn{
   margin-top: 30px;
 }

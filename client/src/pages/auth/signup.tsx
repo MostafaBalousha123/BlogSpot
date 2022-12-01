@@ -3,18 +3,24 @@ import './style.css'
 import {
   Box, Button,
 } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 import { styledComponents } from './style'
 
 export const Signup:FC = () => {
   const { CustomTextField } = styledComponents
+  const navigate = useNavigate()
   return (
     <Box className="auth-container">
-      <Box className="image-container">
-        {/* <img src="mostafa.png" alt="img" /> */}
-      </Box>
-
       <Box className="form-container">
-        <h2 className="form-title">Get Started</h2>
+        <Box className="form-title">
+          <p>START FOR FREE</p>
+          <h1>Create new account.</h1>
+          <p>
+            Already A Member?
+            <Button onClick={() => { navigate('/signin') }}> Log in</Button>
+          </p>
+        </Box>
+
         <CustomTextField
           id="outlined-basic"
           variant="outlined"
@@ -66,8 +72,7 @@ export const Signup:FC = () => {
           }}
         />
 
-        <Button variant="contained">Sign Up</Button>
-
+        <Button className="sign-up-btn" variant="contained">Sign Up</Button>
       </Box>
     </Box>
   )
