@@ -1,5 +1,10 @@
 import { FC } from 'react'
+import Navbar from '../../components/Navbar'
+import PhotoContainer from '../../components/PhotosContainer'
 
 export const Photos:FC = () => (
-  <div>Photos</div>
+  <div>
+    <Navbar />
+    <PhotoContainer />
+  </div>
 )
