@@ -4,19 +4,25 @@ import {
   Box, Button, IconButton,
 } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { styledComponents } from './style'
 import { auth } from '../../hooks/user/actions'
+import { isLogged } from '../../hooks/user/userSlice'
 
 export const Signin:FC = () => {
   const { CustomTextField } = styledComponents
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
   const handleSubmit = async ():Promise<void> => {
     const response = await auth.signin({ email, password })
-    if (response.data?.access_token) { navigate('/') }
+    if (response.data?.access_token) {
+      navigate('/')
+      dispatch(isLogged())
+    }
   }
   return (
     <Box className="auth-container">

@@ -55,7 +55,6 @@ const App:FC = () => {
       try {
         const user = await ApiService.get('/api/v1/users/me')
         if (user.data) {
-          console.log(user.data)
           dispatch(setUser(user.data))
         }
       } catch (err) {

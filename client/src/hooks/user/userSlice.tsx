@@ -20,7 +20,15 @@ export const userSlice = createSlice({
       state.user = null
       state.isAuthenticated = false
     },
+    isLogged: (state) => {
+      state.user = null
+      state.isAuthenticated = true
+    },
     setUser: (state, action: PayloadAction<IUser>) => {
+      state.user = action.payload
+      state.isAuthenticated = true
+    },
+    getUser: (state, action: PayloadAction<IUser>) => {
       state.user = action.payload
       state.isAuthenticated = true
     },
@@ -28,6 +36,8 @@ export const userSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setUser, logout } = userSlice.actions
+export const {
+  setUser, getUser, logout, isLogged,
+} = userSlice.actions
 
 export default userSlice.reducer

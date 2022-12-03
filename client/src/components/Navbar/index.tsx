@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import {
@@ -10,12 +10,18 @@ import AccountCircle from '@mui/icons-material/AccountCircle'
 import SearchIcon from '@mui/icons-material/Search'
 
 import './style.css'
+import { useDispatch, useSelector } from 'react-redux'
 import { sxStyle } from './style'
+import { logout } from '../../hooks/user/userSlice'
+import { auth as test } from '../../hooks/user/actions'
 
 const Navbar:FC = () => {
-  const [auth] = React.useState(false)
+  const isAuthenticated = useSelector((state:any) => state.user.isAuthenticated)
+  console.log('out', isAuthenticated)
+  const [auth, setAuth] = React.useState(isAuthenticated)
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>):void => {
     setAnchorEl(event.currentTarget)
@@ -25,6 +31,16 @@ const Navbar:FC = () => {
     setAnchorEl(null)
   }
 
+  useEffect(() => {
+    setAuth(isAuthenticated)
+    console.log('useEffect', isAuthenticated)
+  }, [isAuthenticated])
+
+  const handleLogout = ():void => {
+    setAuth(false)
+    dispatch(logout())
+    test.logout()
+  }
   const {
     Search, SearchIconWrapper, StyledInputBase,
   } = sxStyle
@@ -122,6 +138,9 @@ const Navbar:FC = () => {
                 }}
                 >
                   My account
+                </MenuItem>
+                <MenuItem onClick={handleLogout}>
+                  Logout
                 </MenuItem>
               </Menu>
             </div>
