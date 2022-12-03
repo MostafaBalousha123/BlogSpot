@@ -31,7 +31,6 @@ const BLog:FC = () => (
         blog content
         blog content
         blog content
-
       </p>
       <Box className="btn-group">
         <Box className="avatar">

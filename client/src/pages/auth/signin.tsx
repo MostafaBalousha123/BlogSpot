@@ -1,14 +1,23 @@
-import { FC } from 'react'
+import { useState, FC } from 'react'
 import './style.css'
 import {
   Box, Button, IconButton,
 } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { styledComponents } from './style'
+import { auth } from '../../hooks/user/actions'
 
 export const Signin:FC = () => {
   const { CustomTextField } = styledComponents
   const navigate = useNavigate()
+
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+
+  const handleSubmit = async ():Promise<void> => {
+    const response = await auth.signin({ email, password })
+    if (response.data?.access_token) { navigate('/') }
+  }
   return (
     <Box className="auth-container">
       <IconButton
@@ -43,6 +52,7 @@ export const Signin:FC = () => {
           InputLabelProps={{
             style: { color: '#ecececae' },
           }}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <CustomTextField
           id="outlined-basic"
@@ -56,8 +66,9 @@ export const Signin:FC = () => {
           InputLabelProps={{
             style: { color: '#ecececae' },
           }}
+          onChange={(e) => setPassword(e.target.value)}
         />
-        <Button className="sign-up-btn" variant="contained">Sign In</Button>
+        <Button className="sign-up-btn" variant="contained" onClick={handleSubmit}>Sign In</Button>
       </Box>
     </Box>
   )
