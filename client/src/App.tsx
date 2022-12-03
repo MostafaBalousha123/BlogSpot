@@ -1,16 +1,21 @@
 // eslint-disable-next-line no-unused-vars
-import React, { FC } from 'react'
+import { FC, useEffect } from 'react'
 import {
   createBrowserRouter,
   RouterProvider,
 } from 'react-router-dom'
 import './App.css'
-import { Signin, Signup } from './pages'
+import { useDispatch } from 'react-redux'
+import {
+  Signin, Signup, HomePage, Blogs, Photos, Profile,
+} from './pages'
+import ApiService from './services/apiServices'
+import { setUser } from './hooks/user/userSlice'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <div>Hello world!</div>,
+    element: <HomePage />,
   },
   {
     path: '/signin',
@@ -21,15 +26,48 @@ const router = createBrowserRouter([
     element: <Signup />,
   },
   {
+    path: '/blogs',
+    element: <Blogs />,
+  },
+  {
+    path: '/blogs/:id',
+    element: <Blogs />,
+  },
+  {
+    path: '/photos',
+    element: <Photos />,
+  },
+  {
+    path: '/users/:id',
+    element: <Profile />,
+  },
+  {
     path: '*',
     element: <div>404!</div>,
   },
 ])
 
-const App:FC = () => (
-  <div className="App">
-    <RouterProvider router={router} />
-  </div>
-)
+const App:FC = () => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    (async ():Promise<void> => {
+      try {
+        const user = await ApiService.get('/api/v1/users/me')
+        if (user.data) {
+          dispatch(setUser(user.data))
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    })()
+  }, [])
+
+  return (
+    <div className="App">
+      <RouterProvider router={router} />
+    </div>
+  )
+}
 
 export default App

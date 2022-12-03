@@ -1,54 +1,90 @@
 import { FC } from 'react'
 import './style.css'
-import { Box, TextField } from '@mui/material'
+import {
+  Box, Button, IconButton,
+} from '@mui/material'
+import { useNavigate } from 'react-router-dom'
+import { styledComponents } from './style'
 
-export const Signup:FC = () => (
-  <Box className="auth-container">
-    <Box className="image-container">
-      <img src="mostafa.png" alt="img" />
-    </Box>
+export const Signup:FC = () => {
+  const { CustomTextField } = styledComponents
+  const navigate = useNavigate()
+  return (
+    <Box className="auth-container">
+      <IconButton
+        className="logo"
+        size="large"
+        edge="start"
+        color="inherit"
+        aria-label="menu"
+        sx={{ mr: 2 }}
+        onClick={() => { navigate('/') }}
+      >
+        LOGO
+      </IconButton>
+      <Box className="form-container">
+        <Box className="form-title">
+          <p>START FOR FREE</p>
+          <h1>Create new account.</h1>
+          <p>
+            Already A Member?
+            <Button onClick={() => { navigate('/signin') }}> Log in</Button>
+          </p>
+        </Box>
 
-    <Box className="form-container">
-      <h2 className="form-title">Get Started</h2>
-      <TextField
-        label="email"
-        type="email"
-        size="small"
-        variant="filled"
-        fullWidth
-        className="text-field"
-        color="primary"
-      />
-      <TextField
-        id="outlined-basic"
-        variant="filled"
-        label="username"
-        size="small"
-        fullWidth
-        className="text-field"
-        color="primary"
-      />
-      <TextField
-        id="outlined-basic"
-        variant="filled"
-        label="password"
-        type="password"
-        size="small"
-        fullWidth
-        className="text-field"
-        color="primary"
-        sx={{ backgroundColor: 'black' }}
-      />
-      <TextField
-        id="outlined-basic"
-        variant="filled"
-        label="profile image"
-        type="url"
-        size="small"
-        fullWidth
-        className="text-field"
-        color="primary"
-      />
+        <CustomTextField
+          id="outlined-basic"
+          variant="outlined"
+          label="username"
+          size="small"
+          fullWidth
+          className="text-field"
+          color="primary"
+          InputLabelProps={{
+            style: { color: '#ecececae' },
+          }}
+        />
+        <CustomTextField
+          label="email"
+          type="email"
+          size="small"
+          variant="outlined"
+          fullWidth
+          className="text-field"
+          color="primary"
+          InputLabelProps={{
+            style: { color: '#ecececae' },
+          }}
+        />
+        <CustomTextField
+          id="outlined-basic"
+          variant="outlined"
+          label="password"
+          type="password"
+          size="small"
+          fullWidth
+          className="text-field"
+          color="primary"
+          InputLabelProps={{
+            style: { color: '#ecececae' },
+          }}
+        />
+        <CustomTextField
+          id="outlined-basic"
+          variant="outlined"
+          label="confirm password"
+          type="password"
+          size="small"
+          fullWidth
+          className="text-field"
+          color="primary"
+          InputLabelProps={{
+            style: { color: '#ecececae' },
+          }}
+        />
+
+        <Button className="sign-up-btn" variant="contained">Sign Up</Button>
+      </Box>
     </Box>
-  </Box>
-)
+  )
+}

@@ -1,36 +1,48 @@
 
 .auth-container{
-  border:  red 2px solid;
   height: 100vh;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+  background-image: url('../../assets/image/BGauth.png');
+  background-size: cover;
+  position: relative;
+
 }
-
-
-.auth-container .image-container{
-  border:  red 2px solid;
-  height: 100vh;
-  width: 45%;
+.auth-container .logo{
+  position: absolute ;
+  top: 40px;
+  left: 40px;
 }
 .auth-container .form-container{
-  border:  #30363d 1px solid;
-  width:35%;
-  /* background-color:#161b22; */
-  padding:  30px;
-  margin: 0 auto;
+  width:45%;
+  padding:  0 30px;
   border-radius: 5px;
 }
 
-.auth-container .form-container .text-field {
+.auth-container .form-container .text-field ,
+.auth-container .form-container Button.sign-up-btn{
   display: block;
   margin: 20px auto;
-  width: 90%;
-  color:  white !important;
-  border: 1px #30363d solid;
+  width: 65%;
+
 }
 .auth-container .form-container .form-title{
-  width: max-content;
+  width: 65%;
   margin: 0 auto;
 }
 
+.auth-container .form-container .form-title p , 
+.auth-container .form-container .form-title h1{
+  margin: 10px  0 !important;
+}
+
+.auth-container .form-container .form-title p {
+color: #e5e7ebc7;
+font-size: 13px;
+}
+
+
+.auth-container .form-container Button.sign-up-btn{
+  margin-top: 30px;
+}
