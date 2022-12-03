@@ -1,0 +1,31 @@
+.img-details-container{
+  border: none !important;
+  outline: none !important;
+  width: 80% !important;
+  border-radius: 15px;
+  min-height: 80vh;
+  max-height: 90vh;
+  overflow-y: scroll;
+  padding: 20px;
+}
+
+.img-details-container img{
+  display: block;
+  margin: 20px auto;
+  max-width: 600px !important;
+  max-height: 500px;
+  object-fit: cover;
+  margin-top: 40px;
+}
+
+.img-details-container .test {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+#modal-modal-title{
+  width: 80%;
+  margin: 40px auto;
+}
