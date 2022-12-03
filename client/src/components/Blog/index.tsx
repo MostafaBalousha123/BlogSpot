@@ -4,7 +4,7 @@ import { Box, Avatar } from '@mui/material'
 import cardDefault from '../../assets/image/cardDefault.png'
 import './style.css'
 
-const Card:FC = () => (
+const BLog:FC = () => (
   <Box className="card">
     <img src={cardDefault} alt="product" />
     <Box className="card-body">
@@ -45,4 +45,4 @@ const Card:FC = () => (
   </Box>
 )
 
-export default Card
+export default BLog

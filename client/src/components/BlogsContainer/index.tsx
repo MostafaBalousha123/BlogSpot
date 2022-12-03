@@ -1,13 +1,13 @@
 import { FC } from 'react'
-import Card from '../Card'
+import BLog from '../Blog'
 import './style.css'
 
 const CardsContainer:FC = () => (
   <div className="cards-container">
-    <Card />
-    <Card />
-    <Card />
-    <Card />
+    <BLog />
+    <BLog />
+    <BLog />
+    <BLog />
   </div>
 )
 
