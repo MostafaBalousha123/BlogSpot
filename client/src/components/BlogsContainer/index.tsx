@@ -36,7 +36,7 @@ const BlogsContainer:FC = () => {
     <div>
       <Box className="add-blogs-container">
         <h2>All Blogs</h2>
-        <Button variant="outlined" startIcon={<AddIcon />} onClick={() => navigate('/blogs/add')}>
+        <Button variant="contained" startIcon={<AddIcon />} onClick={() => navigate('/blogs/add')}>
           Add Blog
         </Button>
       </Box>

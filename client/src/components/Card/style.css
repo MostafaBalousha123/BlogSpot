@@ -46,6 +46,7 @@
   font-size: 14px;
   max-height: 68px;
   overflow: hidden;
+  margin-top: 10px;
 }
 
 
@@ -55,13 +56,3 @@
   bottom: 15px;
   left: 10px;
 }
-
-/* .btn-group  p {
-  text-align: center;
-  color: #fff;
-  text-decoration: none;
-  padding-left: 10px;
-  padding-right: 10px;
-  align-self: center ;
-  margin: 0 !important;
-} */

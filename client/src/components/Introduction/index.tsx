@@ -26,7 +26,6 @@ export const Introduction:FC = () => {
             }}
             >
               Get Start
-
             </Button>
           </Box>
 

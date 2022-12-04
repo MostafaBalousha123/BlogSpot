@@ -1,0 +1,37 @@
+.blog-details{
+  width: 90%;
+  margin: 50px auto;
+}
+
+.blog-header{
+  margin-top: 50px ;
+}
+
+.blog-header-title{
+  font-weight: 400 !important;
+  font-family: 'Inter', sans-serif;
+  text-transform: capitalize;
+  letter-spacing: 5px !important;
+}
+.blog-header-title, 
+.blog-header-description,
+.blog-header-user-info{
+  width: max-content;
+  max-width: 70%;
+  margin: 15px auto !important;
+  text-align: center;
+}
+
+.blog-header img{
+  width: 100%;
+  max-width: 700px;
+  min-width: 300px;
+  display: block;
+  margin: 30px auto;
+}
+
+.content{
+  width: 70%;
+  margin: 30px auto;
+  padding: 20px;
+}
