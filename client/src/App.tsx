@@ -7,7 +7,7 @@ import {
 import './App.css'
 import { useDispatch } from 'react-redux'
 import {
-  Signin, Signup, HomePage, Blogs, Photos, Profile,
+  Signin, Signup, HomePage, Blogs, Photos, Profile, Blog,
 } from './pages'
 import ApiService from './services/apiServices'
 import { setUser } from './hooks/user/userSlice'
@@ -31,7 +31,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/blogs/:id',
-    element: <Blogs />,
+    element: <Blog />,
   },
   {
     path: '/photos',

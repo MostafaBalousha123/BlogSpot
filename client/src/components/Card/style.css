@@ -48,7 +48,7 @@
   overflow: hidden;
 }
 
-.view-btn a {
+.view-btn p {
   padding: 5px 10px;
   border: 1.5px solid #007bff;
   border-radius: 3px;
@@ -69,7 +69,7 @@
   padding: 5px 12px 5px 5px;
 }
 
-.btn-group .btn a {
+.btn-group .btn p {
   padding: 0px 7px;
   color: #fff;
   text-decoration: none;
