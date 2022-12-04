@@ -1,0 +1,14 @@
+.text-editor{
+  width: 55%;
+  margin: 40px auto;
+  height: 40vh;
+  color: white;
+}
+
+.text-editor .text-field{
+  margin-top: 20px;
+}
+
+.text-editor h4 {
+  margin-top: 20px;
+}

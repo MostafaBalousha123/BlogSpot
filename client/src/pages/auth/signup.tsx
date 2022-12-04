@@ -4,7 +4,7 @@ import {
   Box, Button, IconButton,
 } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import { styledComponents } from './style'
+import { styledComponents } from '../../components/CustomTextField'
 
 export const Signup:FC = () => {
   const { CustomTextField } = styledComponents

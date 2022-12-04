@@ -5,3 +5,15 @@
   justify-content: flex-start;
   flex-wrap: wrap;
 }
+
+.add-blogs-container{
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: 30px auto;
+
+}
+
+.add-blogs-container h2{
+  margin: 0 !important;
+}

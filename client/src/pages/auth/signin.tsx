@@ -5,7 +5,7 @@ import {
 } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { styledComponents } from './style'
+import { styledComponents } from '../../components/CustomTextField'
 import { auth } from '../../hooks/user/actions'
 import { isLogged } from '../../hooks/user/userSlice'
 
