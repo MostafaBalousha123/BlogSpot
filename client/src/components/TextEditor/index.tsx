@@ -9,6 +9,7 @@ import 'react-quill/dist/quill.snow.css'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import './style.css'
+import { toast } from 'react-toastify'
 import ApiService from '../../services/apiServices'
 import { styledComponents } from '../CustomTextField'
 import { modules, formats } from './provider'
@@ -28,7 +29,10 @@ const TextEditor:FC = () => {
   const handleAddBlog = async ():Promise<void> => {
     if (isAuthenticated) {
       const result = await ApiService.post('/api/v1/blogs', { title, image, content })
-      if (result.status === 201) navigate('/blogs')
+      if (result.status === 201) {
+        toast.success(result.data.message)
+        navigate('/blogs')
+      }
     } else {
       navigate('/signin')
     }
