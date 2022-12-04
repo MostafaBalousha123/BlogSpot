@@ -28,7 +28,10 @@ export class BlogsService {
   }
 
   async findOne(id: number) {
-    return await this.blogRepository.findOne({ where: { id } });
+    return await this.blogRepository.findOne({
+      where: { id },
+      include: { model: User, attributes: ['username', 'profileImg'] },
+    });
   }
 
   async update(id: number, userId: number, dto: UpdateBlogDto) {
