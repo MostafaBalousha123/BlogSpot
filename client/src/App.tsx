@@ -52,13 +52,9 @@ const App:FC = () => {
 
   useEffect(() => {
     (async ():Promise<void> => {
-      try {
-        const user = await ApiService.get('/api/v1/users/me')
-        if (user.data) {
-          dispatch(setUser(user.data))
-        }
-      } catch (err) {
-        console.log(err)
+      const user = await ApiService.get('/api/v1/users/me')
+      if (user.data) {
+        dispatch(setUser(user.data))
       }
     })()
   }, [])

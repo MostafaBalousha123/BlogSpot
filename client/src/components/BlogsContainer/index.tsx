@@ -27,7 +27,6 @@ const BlogsContainer:FC = () => {
       if (result.status === 200) setBlogs(result.data)
     })()
   }, [])
-  console.log(blogs)
   return (
     <div className="cards-container">
       { blogs.length ? blogs.map((ele:IBlogs, index:number) => (

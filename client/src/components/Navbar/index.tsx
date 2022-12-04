@@ -17,7 +17,6 @@ import { auth as test } from '../../hooks/user/actions'
 
 const Navbar:FC = () => {
   const isAuthenticated = useSelector((state:any) => state.user.isAuthenticated)
-  console.log('out', isAuthenticated)
   const [auth, setAuth] = React.useState(isAuthenticated)
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const navigate = useNavigate()
@@ -33,7 +32,6 @@ const Navbar:FC = () => {
 
   useEffect(() => {
     setAuth(isAuthenticated)
-    console.log('useEffect', isAuthenticated)
   }, [isAuthenticated])
 
   const handleLogout = ():void => {
