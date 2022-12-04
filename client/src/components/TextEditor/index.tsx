@@ -25,10 +25,13 @@ const TextEditor:FC = () => {
   const [title, setTitle] = useState<string>('')
   const [image, setImage] = useState<string>('')
   const [content, setContent] = useState<string>('')
+  const [description, setDescription] = useState<string>('')
 
   const handleAddBlog = async ():Promise<void> => {
     if (isAuthenticated) {
-      const result = await ApiService.post('/api/v1/blogs', { title, image, content })
+      const result = await ApiService.post('/api/v1/blogs', {
+        title, image, content, description,
+      })
       if (result.status === 201) {
         toast.success(result.data.message)
         navigate('/blogs')
@@ -68,6 +71,21 @@ const TextEditor:FC = () => {
         }}
         value={image}
         onChange={(e) => setImage(e.target.value)}
+      />
+
+      <CustomTextField
+        label="description"
+        type="text"
+        size="small"
+        variant="outlined"
+        fullWidth
+        className="text-field"
+        color="primary"
+        InputLabelProps={{
+          style: { color: '#ecececae' },
+        }}
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
       />
       <h4>Content</h4>
       <ReactQuill

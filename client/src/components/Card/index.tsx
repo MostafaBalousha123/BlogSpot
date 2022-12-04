@@ -7,7 +7,7 @@ import { IBlogs } from '../../interfaces/IBlogs'
 import './style.css'
 
 const Card:FC<Partial<IBlogs>> = ({
-  id, title, content, image, user, userId,
+  id, title, description, image, user, userId,
 }) => {
   const navigate = useNavigate()
   return (
@@ -32,7 +32,7 @@ const Card:FC<Partial<IBlogs>> = ({
         </Box>
         <hr />
         <p>
-          {content}
+          {description}
         </p>
         <Box className="btn-group">
           <Avatar

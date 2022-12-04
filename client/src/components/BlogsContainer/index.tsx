@@ -12,6 +12,7 @@ const initBlog = {
   id: 0,
   title: '',
   content: '',
+  description: '',
   image: '',
   userId: 0,
   createdAt: '',
@@ -46,7 +47,7 @@ const BlogsContainer:FC = () => {
             userId={ele.userId}
             image={ele.image}
             title={ele.title}
-            content={ele.content}
+            description={ele.description}
             user={ele.user}
             key={index}
           />
