@@ -7,8 +7,10 @@
     "editor.tabSize": 2,
     "cSpell.words": [
         "appbar",
+        "dompurify",
         "Formik",
         "JWTKEY",
+        "katex",
         "nestjs",
         "signin",
         "signup",

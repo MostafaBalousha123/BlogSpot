@@ -16,6 +16,9 @@ export class Blog extends Model {
   @Column({ type: DataType.TEXT, allowNull: false })
   title: string;
 
+  @Column({ type: DataType.TEXT, allowNull: true })
+  description: string;
+
   @Column({ type: DataType.TEXT, allowNull: false })
   content: string;
 

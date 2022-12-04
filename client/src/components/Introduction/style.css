@@ -38,14 +38,15 @@
   .statistics-container{
     display: flex;
     justify-content: flex-start;
+    align-items: center;
     margin: 30px;
     flex-wrap: wrap;
-
+    width: max-content;
 
   }
   .statistics-container p{
-    padding: 5px 35px;
-    width: 65px;
+    padding: 5px 40px;
+    width: max-content;
     text-align: center;
     margin: 0 10px;
     color: #e7e2e2;

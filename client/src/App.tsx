@@ -6,8 +6,10 @@ import {
 } from 'react-router-dom'
 import './App.css'
 import { useDispatch } from 'react-redux'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import {
-  Signin, Signup, HomePage, Blogs, Photos, Profile,
+  Signin, Signup, HomePage, Blogs, Photos, Profile, Blog, AddBlogs,
 } from './pages'
 import ApiService from './services/apiServices'
 import { setUser } from './hooks/user/userSlice'
@@ -31,7 +33,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/blogs/:id',
-    element: <Blogs />,
+    element: <Blog />,
+  },
+  {
+    path: '/blogs/add',
+    element: <AddBlogs />,
   },
   {
     path: '/photos',
@@ -52,13 +58,9 @@ const App:FC = () => {
 
   useEffect(() => {
     (async ():Promise<void> => {
-      try {
-        const user = await ApiService.get('/api/v1/users/me')
-        if (user.data) {
-          dispatch(setUser(user.data))
-        }
-      } catch (err) {
-        console.log(err)
+      const user = await ApiService.get('/api/v1/users/me')
+      if (user.data) {
+        dispatch(setUser(user.data))
       }
     })()
   }, [])
@@ -66,6 +68,18 @@ const App:FC = () => {
   return (
     <div className="App">
       <RouterProvider router={router} />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   )
 }

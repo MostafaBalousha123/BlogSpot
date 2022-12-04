@@ -4,6 +4,7 @@ import { UpdateBlogDto } from './dto/update-blog.dto';
 import { BLOG_REPOSITORY } from '../database/constant';
 import { Blog } from './entity/blog.entity';
 import { Message } from '../database/config/messages';
+import { User } from '../Auth/entities/user.entity';
 
 @Injectable()
 export class BlogsService {
@@ -21,11 +22,16 @@ export class BlogsService {
   }
 
   async findAll() {
-    return await this.blogRepository.findAll();
+    return await this.blogRepository.findAll({
+      include: { model: User, attributes: ['username', 'profileImg'] },
+    });
   }
 
   async findOne(id: number) {
-    return await this.blogRepository.findOne({ where: { id } });
+    return await this.blogRepository.findOne({
+      where: { id },
+      include: { model: User, attributes: ['username', 'profileImg'] },
+    });
   }
 
   async update(id: number, userId: number, dto: UpdateBlogDto) {
