@@ -49,6 +49,7 @@ const BlogsContainer:FC = () => {
             title={ele.title}
             description={ele.description}
             user={ele.user}
+            createdAt={ele.createdAt}
             key={index}
           />
         )) : <Typography> no blogs</Typography>}

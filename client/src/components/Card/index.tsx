@@ -1,13 +1,14 @@
 import { FC } from 'react'
 import {
-  Box, Avatar, Typography, Button,
+  Box, Button,
 } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { IBlogs } from '../../interfaces/IBlogs'
 import './style.css'
+import UserInfo from '../UserInfo'
 
 const Card:FC<Partial<IBlogs>> = ({
-  id, title, description, image, user, userId,
+  id, title, description, image, user, userId, createdAt,
 }) => {
   const navigate = useNavigate()
   return (
@@ -34,19 +35,16 @@ const Card:FC<Partial<IBlogs>> = ({
         <p>
           {description}
         </p>
+
         <Box className="btn-group">
-          <Avatar
-            sx={{ width: '35px', height: '35px' }}
-            alt={user?.username}
-            src={user?.profileImg}
+          <UserInfo
+            id={userId}
+            username={user?.username}
+            profileImg={user?.profileImg}
+            createdAt={createdAt}
           />
-          <Typography onClick={() => {
-            navigate(`/users/${userId}`)
-          }}
-          >
-            {user?.username}
-          </Typography>
         </Box>
+
       </Box>
     </Box>
   )

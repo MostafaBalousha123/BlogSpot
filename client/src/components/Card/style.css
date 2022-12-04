@@ -50,19 +50,13 @@
 
 
 .btn-group {
-  display: flex;
-  justify-content: flex-start;
-  border: 1px #4D185F solid;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   width: max-content;
-  border-radius: 3px;
-  padding: 5px 12px 5px 5px;
   position: absolute;
   bottom: 15px;
   left: 10px;
 }
 
-.btn-group  p {
+/* .btn-group  p {
   text-align: center;
   color: #fff;
   text-decoration: none;
@@ -70,4 +64,4 @@
   padding-right: 10px;
   align-self: center ;
   margin: 0 !important;
-}
+} */

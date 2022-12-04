@@ -1,10 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { FC } from 'react'
 import {
-  Box, Typography, Modal, Button, Avatar,
+  Box, Typography, Modal,
 } from '@mui/material'
 import './style.css'
 import SuggestedPhotos from '../SuggestedPhotos'
+import UserInfo from '../UserInfo'
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -33,17 +34,12 @@ const Photo:FC<test> = ({ imgInfo, handleClose, open }) => (
     >
       <Box sx={style} className="img-details-container">
 
-        <Box className="test">
-          <Box className="btn-group">
-            <Avatar
-              sx={{ width: '35px', height: '35px', margin: '0 10px' }}
-              alt="Remy Sharp"
-              src=""
-            />
-            <Typography style={{ display: 'inline' }}>mostafa</Typography>
-          </Box>
-          <Button variant="contained">Download</Button>
-        </Box>
+        <UserInfo
+          id={1}
+          username="user?.username"
+          profileImg="user?.profileImg"
+          createdAt="createdAt"
+        />
 
         <Typography id="modal-modal-title" variant="h6" component="h2">
           {imgInfo.imgTitle}
