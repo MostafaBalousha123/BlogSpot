@@ -23,7 +23,15 @@ export class User extends Model {
   @Column({ type: DataType.STRING, allowNull: false })
   username: string;
 
-  @Column({ type: DataType.TEXT, allowNull: false })
+  @Column({ type: DataType.TEXT, allowNull: true })
+  bio: string;
+
+  @Column({
+    type: DataType.TEXT,
+    allowNull: false,
+    defaultValue:
+      'https://www.redditstatic.com/avatars/avatar_default_02_FFD635.png',
+  })
   profileImg: string;
 
   @HasMany(() => Blog)

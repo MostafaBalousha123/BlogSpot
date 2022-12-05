@@ -1,41 +1,32 @@
 /* eslint-disable react/no-array-index-key */
-import { FC, useEffect, useState } from 'react'
+
+import { FC } from 'react'
+
 import { Typography, Box, Button } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import BLog from '../Card'
 import './style.css'
-import ApiService from '../../services/apiServices'
 import { IBlogs } from '../../interfaces/IBlogs'
 
-const initBlog = {
-  id: 0,
-  title: '',
-  content: '',
-  description: '',
-  image: '',
-  userId: 0,
-  createdAt: '',
-  updatedAt: '',
-  user: {
-    username: '',
-    profileImg: '',
-  },
-}
-const BlogsContainer:FC = () => {
-  const [blogs, setBlogs] = useState<IBlogs[]>([initBlog])
+const BlogsContainer:FC<{blogs:IBlogs[]}> = ({ blogs }) => {
   const navigate = useNavigate()
-  useEffect(() => {
-    (async () => {
-      const result = await ApiService.get('/api/v1/blogs')
-      if (result.status === 200) setBlogs(result.data)
-    })()
-  }, [])
+  const params = useParams()
+
+  const auth = useSelector((state:any) => state.user.user)
+
+  const handleTitle = ():string => {
+    if (params?.id && auth?.id && parseInt(params.id, 10) === auth?.id) {
+      return 'Your Blogs'
+    }
+    return 'All Blogs'
+  }
 
   return (
     <div>
       <Box className="add-blogs-container">
-        <h2>All Blogs</h2>
+        <h2>{handleTitle()}</h2>
         <Button variant="contained" startIcon={<AddIcon />} onClick={() => navigate('/blogs/add')}>
           Add Blog
         </Button>
