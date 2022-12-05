@@ -21,9 +21,17 @@ export class BlogsService {
     return { data: blog, message: Message.CREATE_BLOG };
   }
 
-  async findAll() {
+  async findAll(userId: number) {
+    const whereObj = {};
+    if (userId) {
+      whereObj['userId'] = userId;
+    }
     return await this.blogRepository.findAll({
-      include: { model: User, attributes: ['username', 'profileImg'] },
+      include: {
+        model: User,
+        attributes: ['username', 'profileImg'],
+      },
+      where: whereObj,
     });
   }
 

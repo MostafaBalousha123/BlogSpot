@@ -5,6 +5,7 @@ import {
   Body,
   Patch,
   Param,
+  Query,
   Delete,
   UseGuards,
   ParseIntPipe,
@@ -12,6 +13,7 @@ import {
 import { BlogsService } from './blogs.service';
 import { CreateBlogDto } from './dto/create-blog.dto';
 import { UpdateBlogDto } from './dto/update-blog.dto';
+import { findAllQueryDTO } from './dto/find-all-query';
 import { getUser } from '../Auth/decorator';
 import { JwtAuthGuard } from '../Auth/strategy';
 
@@ -26,8 +28,9 @@ export class BlogsController {
   }
 
   @Get()
-  findAll() {
-    return this.blogsService.findAll();
+  findAll(@Query() query: findAllQueryDTO) {
+    const { userId } = query;
+    return this.blogsService.findAll(userId);
   }
 
   @Get(':id')

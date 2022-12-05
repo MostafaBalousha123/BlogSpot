@@ -30,7 +30,6 @@ class ApiService {
 
   public static post(resource:string, body:any, config?:AxiosRequestConfig)
   :Promise<AxiosResponse> {
-    console.log(JwtServices.getToken())
     return this.axios.post(resource, body, config)
   }
 
