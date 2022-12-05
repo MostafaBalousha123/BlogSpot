@@ -1,0 +1,36 @@
+.images-container{
+  background-image:linear-gradient( #0c1b39,#0e1e4300) ;
+  position: relative;
+  padding-bottom: 50px;
+}
+
+.images-container .header{
+  width: 60%;
+  display: block;
+  margin: 0 auto;
+  max-height: 360px;
+  border-radius: 0px 0 5px 5px  ;
+}
+
+.images-container .avatar{
+  width: 70%;
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  bottom:  0px;
+  left: 350px;
+}
+
+.bio-container{
+  width: 60%;
+  margin: 20px auto;
+}
+
+.profile-user-info h2,
+.profile-user-info p{
+  margin: 10px 0 30px ;
+  width: 80%;
+}
