@@ -1,36 +1,16 @@
 /* eslint-disable react/no-array-index-key */
-import { FC, useEffect, useState } from 'react'
+
+import { FC } from 'react'
+
 import { Typography, Box, Button } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 import { useNavigate } from 'react-router-dom'
 import BLog from '../Card'
 import './style.css'
-import ApiService from '../../services/apiServices'
 import { IBlogs } from '../../interfaces/IBlogs'
 
-const initBlog = {
-  id: 0,
-  title: '',
-  content: '',
-  description: '',
-  image: '',
-  userId: 0,
-  createdAt: '',
-  updatedAt: '',
-  user: {
-    username: '',
-    profileImg: '',
-  },
-}
-const BlogsContainer:FC = () => {
-  const [blogs, setBlogs] = useState<IBlogs[]>([initBlog])
+const BlogsContainer:FC<{blogs:IBlogs[]}> = ({ blogs }) => {
   const navigate = useNavigate()
-  useEffect(() => {
-    (async () => {
-      const result = await ApiService.get('/api/v1/blogs')
-      if (result.status === 200) setBlogs(result.data)
-    })()
-  }, [])
 
   return (
     <div>

@@ -2,7 +2,6 @@ import { FC } from 'react'
 import { Box, Chip } from '@mui/material'
 import header from '../../assets/image/profileHeader.png'
 import avatar from '../../assets/image/profileAvatar.png'
-
 import './style.css'
 
 const ProfileHeader:FC = () => (
