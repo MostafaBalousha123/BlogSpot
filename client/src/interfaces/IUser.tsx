@@ -1,10 +1,11 @@
 export interface IUser {
-  id: string;
-  name: string;
+  id: number;
+  username: string;
   email: string;
+  bio:string;
   profileImg:string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface IGenericResponse {

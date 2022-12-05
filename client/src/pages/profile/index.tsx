@@ -7,6 +7,7 @@ import ApiService from '../../services/apiServices'
 import { IBlogs } from '../../interfaces/IBlogs'
 
 import './style.css'
+import { IUser } from '../../interfaces/IUser'
 
 const initBlog = {
   id: 0,
@@ -23,11 +24,24 @@ const initBlog = {
   },
 }
 
+const initUser = {
+  id: 0,
+  username: '',
+  email: '',
+  bio: '',
+  profileImg: '',
+  createdAt: '',
+  updatedAt: '',
+}
+
 export const Profile:FC = () => {
   const [blogs, setBlogs] = useState<IBlogs[]>([initBlog])
+  const [user, setUser] = useState<IUser>(initUser)
+
   const userId = useParams()
+
   useEffect(() => {
-    (async () => {
+    (async ():Promise<void> => {
       const result = await ApiService.get('/api/v1/blogs', {
         params: {
           userId: userId.id,
@@ -37,10 +51,17 @@ export const Profile:FC = () => {
     })()
   }, [])
 
+  useEffect(() => {
+    (async ():Promise<void> => {
+      const result = await ApiService.get(`/api/v1/users/${userId.id}`)
+      if (result.status === 200) setUser(result.data)
+    })()
+  }, [])
+
   return (
     <div>
       <Navbar />
-      <ProfileHeader />
+      <ProfileHeader user={user} blogsCount={blogs.length} />
       <BasicTabs blogs={blogs} />
     </div>
   )

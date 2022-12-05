@@ -50,6 +50,21 @@ export class AuthService {
     });
   }
 
+  findOne(id: number) {
+    return this.usersRepository.findOne({
+      attributes: [
+        'id',
+        'email',
+        'username',
+        'profileImg',
+        'createdAt',
+        'updatedAt',
+        'bio',
+      ],
+      where: { id },
+    });
+  }
+
   generateToken(id: number, email: string) {
     return {
       access_token: this.jwtService.sign({ sub: id, email }),
