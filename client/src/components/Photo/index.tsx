@@ -41,7 +41,7 @@ const Photo:FC<test> = ({ imgInfo, handleClose, open }) => (
           createdAt="createdAt"
         />
 
-        <Typography id="modal-modal-title" variant="h6" component="h2">
+        <Typography id="modal-modal-title" variant="h6">
           {imgInfo.imgTitle}
         </Typography>
         <img src={imgInfo.imgSrc} alt={imgInfo.imgTitle} />

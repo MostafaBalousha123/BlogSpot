@@ -21,8 +21,13 @@ const UserInfo:FC<IUserInfo> = ({
         src={profileImg}
       />
       <Box>
-        <Typography className="username">{username}</Typography>
-        <Typography className="date">{dayjs(createdAt).format('MMM D, YYYY')}</Typography>
+        <Typography variant="body2" className="username">{username}</Typography>
+        <Typography
+          variant="body2"
+          className="date"
+        >
+          {dayjs(createdAt).format('MMM D, YYYY')}
+        </Typography>
       </Box>
     </Box>
   )
