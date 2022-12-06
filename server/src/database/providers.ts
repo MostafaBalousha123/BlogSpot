@@ -3,8 +3,9 @@ import { Sequelize } from 'sequelize-typescript';
 import { SEQUELIZE, DEVELOPMENT, TEST, PRODUCTION } from './constant';
 import databaseConfig from './config/enviroment';
 
-import { Blog } from '../blogs/entity/blog.entity';
 import { User } from '../Auth/entities/user.entity';
+import { Photo } from '../photos/entities/photo.entity';
+import { Blog } from '../blogs/entity/blog.entity';
 
 export const databaseProviders = [
   {
@@ -25,7 +26,7 @@ export const databaseProviders = [
           config = databaseConfig.development;
       }
       const sequelize = new Sequelize(config);
-      sequelize.addModels([Blog, User]);
+      sequelize.addModels([Blog, User, Photo]);
       await sequelize.sync({ force: false });
       return sequelize;
     },
