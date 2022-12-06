@@ -29,3 +29,16 @@
   width: 80%;
   margin: 40px auto;
 }
+
+.img-details-header{
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px auto;
+}
+
+.download-btn{
+  background-color: rgb(5 160 129) !important;
+  padding-left: 25px !important ;
+  padding-right: 25px !important;
+}
