@@ -3,6 +3,7 @@ import { CreatePhotoDto } from './dto/create-photo.dto';
 import { UpdatePhotoDto } from './dto/update-photo.dto';
 import { PHOTO_REPOSITORY } from '../database/constant';
 import { Photo } from './entities/photo.entity';
+import { User } from 'src/Auth/entities/user.entity';
 
 @Injectable()
 export class PhotosService {
@@ -13,12 +14,22 @@ export class PhotosService {
     return this.photoRepository.create({ ...dto, userId });
   }
 
-  async findAll() {
-    return await this.photoRepository.findAll();
+  async findAll(userId: number) {
+    const whereObj = {};
+    if (userId) {
+      whereObj['userId'] = userId;
+    }
+    return await this.photoRepository.findAll({
+      include: { model: User, attributes: ['username', 'profileImg'] },
+      where: whereObj,
+    });
   }
 
   async findOne(id: number) {
-    return await this.photoRepository.findOne({ where: { id } });
+    return await this.photoRepository.findOne({
+      where: { id },
+      include: { model: User, attributes: ['username', 'profileImg'] },
+    });
   }
 
   async update(id: number, dto: UpdatePhotoDto) {
