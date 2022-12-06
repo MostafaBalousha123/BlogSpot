@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import {
@@ -17,7 +17,6 @@ import { auth as test } from '../../hooks/user/actions'
 
 const Navbar:FC = () => {
   const isAuthenticated = useSelector((state:any) => state.user.isAuthenticated)
-  const [auth, setAuth] = React.useState(isAuthenticated)
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -30,12 +29,7 @@ const Navbar:FC = () => {
     setAnchorEl(null)
   }
 
-  useEffect(() => {
-    setAuth(isAuthenticated)
-  }, [isAuthenticated])
-
   const handleLogout = ():void => {
-    setAuth(false)
     dispatch(logout())
     test.logout()
   }
@@ -96,7 +90,7 @@ const Navbar:FC = () => {
               Photos
             </Typography>
           </Box>
-          {auth ? (
+          {isAuthenticated ? (
             <div>
               <IconButton
                 size="large"

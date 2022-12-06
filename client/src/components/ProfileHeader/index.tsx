@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Box, Chip } from '@mui/material'
+import { Box, Chip, Typography } from '@mui/material'
 import header from '../../assets/image/profileHeader.png'
 import './style.css'
 import { IUser } from '../../interfaces/IUser'
@@ -13,11 +13,11 @@ const ProfileHeader:FC<{user: IUser, blogsCount:number}> = ({ user, blogsCount }
         <img className="avatar" src={profileImg} alt={username} />
       </Box>
       <Box className="bio-container">
-        <h2>{username}</h2>
-        <p>
+        <Typography variant="h5">{username}</Typography>
+        <Typography variant="body2">
           bio:
           {bio}
-        </p>
+        </Typography>
         <Chip
           sx={{ margin: '5px' }}
           label={`${blogsCount} blogs`}

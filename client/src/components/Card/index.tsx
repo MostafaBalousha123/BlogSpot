@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import {
-  Box, Button,
+  Box, Button, Typography,
 } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { IBlogs } from '../../interfaces/IBlogs'
@@ -17,7 +17,7 @@ const Card:FC<Partial<IBlogs>> = ({
       <Box className="card-body">
         <Box className="row">
           <Box className="card-title">
-            <h4>{title}</h4>
+            <Typography variant="h5">{title}</Typography>
           </Box>
 
           <Button
@@ -32,9 +32,9 @@ const Card:FC<Partial<IBlogs>> = ({
 
         </Box>
         <hr />
-        <p>
+        <Typography variant="body2">
           {description}
-        </p>
+        </Typography>
 
         <Box className="btn-group">
           <UserInfo
