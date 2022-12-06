@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid'
 import BLog from '../Card'
 import './style.css'
 import { IBlogs } from '../../interfaces/IBlogs'
+import { isYourProfile } from '../../helpers/isYourProfile'
 import Empty from '../Empty'
 
 const BlogsContainer:FC<{blogs:IBlogs[]}> = ({ blogs }) => {
@@ -15,20 +16,27 @@ const BlogsContainer:FC<{blogs:IBlogs[]}> = ({ blogs }) => {
 
   const auth = useSelector((state:any) => state.user.user)
 
-  const isYourProfile = ():boolean => {
-    if (params?.id && auth?.id && parseInt(params.id, 10) === auth?.id) {
-      return true
-    }
-    return false
-  }
+  // const isYourProfile = ():boolean => {
+  //   if (!params.id || (params?.id && auth?.id && parseInt(params?.id, 10) === auth?.id)) {
+  //     return true
+  //   }
+  //   return false
+  // }
 
   return (
     <Box>
       <Box className="add-blogs-container">
-        <Typography variant="h4">{isYourProfile() ? 'Your Blogs' : 'All Blogs'}</Typography>
+        <Typography variant="h5">
+          {isYourProfile(params?.id, auth?.id)
+            ? 'Your Blogs' : 'All Blogs'}
+        </Typography>
+
+        {isYourProfile(params?.id, auth?.id) && (
         <Button variant="contained" startIcon={<AddIcon />} onClick={() => navigate('/blogs/add')}>
           Add Blog
         </Button>
+        )}
+
       </Box>
       <Box className="cards-container">
         { blogs.length ? blogs.map((ele:IBlogs) => (
@@ -42,7 +50,11 @@ const BlogsContainer:FC<{blogs:IBlogs[]}> = ({ blogs }) => {
             createdAt={ele.createdAt}
             key={uuidv4()}
           />
-        )) : <Empty message={isYourProfile() ? 'Post your first blogs' : 'Nothing posted yet'} /> }
+        )) : (
+          <Empty message={isYourProfile(params?.id, auth?.id)
+            ? 'Post your first blogs' : 'Nothing posted yet'}
+          />
+        ) }
       </Box>
     </Box>
 

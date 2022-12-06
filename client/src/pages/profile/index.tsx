@@ -4,65 +4,56 @@ import Navbar from '../../components/Navbar'
 import ProfileHeader from '../../components/ProfileHeader'
 import BasicTabs from '../../components/Taps'
 import ApiService from '../../services/apiServices'
-import { IBlogs } from '../../interfaces/IBlogs'
-
 import './style.css'
+
+import { IBlogs } from '../../interfaces/IBlogs'
 import { IUser } from '../../interfaces/IUser'
+import { IPhotos } from '../../interfaces/IPhotos'
+import { initValues } from './initValues'
 
-const initBlog = {
-  id: 0,
-  title: '',
-  content: '',
-  description: '',
-  image: '',
-  userId: 0,
-  createdAt: '',
-  updatedAt: '',
-  user: {
-    username: '',
-    profileImg: '',
-  },
-}
-
-const initUser = {
-  id: 0,
-  username: '',
-  email: '',
-  bio: '',
-  profileImg: '',
-  createdAt: '',
-  updatedAt: '',
-}
+const { initUser, initBlog, initPhoto } = initValues
 
 export const Profile:FC = () => {
-  const [blogs, setBlogs] = useState<IBlogs[]>([initBlog])
   const [user, setUser] = useState<IUser>(initUser)
+  const [blogs, setBlogs] = useState<IBlogs[]>([initBlog])
+  const [photos, setPhotos] = useState<IPhotos[]>([initPhoto])
 
   const userId = useParams()
 
   useEffect(() => {
-    (async ():Promise<void> => {
+    const fetchBlogs = async ():Promise<void> => {
       const result = await ApiService.get('/api/v1/blogs', {
         params: {
           userId: userId.id,
         },
       })
       if (result.status === 200) setBlogs(result.data)
-    })()
-  }, [])
+    }
 
-  useEffect(() => {
-    (async ():Promise<void> => {
+    const fetchUser = async ():Promise<void> => {
       const result = await ApiService.get(`/api/v1/users/${userId.id}`)
       if (result.status === 200) setUser(result.data)
-    })()
+    }
+
+    const fetchPhotos = async ():Promise<void> => {
+      const result = await ApiService.get('/api/v1/photos', {
+        params: {
+          userId: userId.id,
+        },
+      })
+      if (result.status === 200) setPhotos(result.data)
+    }
+
+    fetchUser()
+    fetchBlogs()
+    fetchPhotos()
   }, [])
 
   return (
     <div>
       <Navbar />
-      <ProfileHeader user={user} blogsCount={blogs.length} />
-      <BasicTabs blogs={blogs} />
+      <ProfileHeader user={user} blogsCount={blogs.length} photosCount={photos.length} />
+      <BasicTabs blogs={blogs} photos={photos} />
     </div>
   )
 }

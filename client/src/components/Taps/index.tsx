@@ -9,6 +9,8 @@ import Box from '@mui/material/Box'
 import './style.css'
 import BlogsContainer from '../BlogsContainer'
 import { IBlogs } from '../../interfaces/IBlogs'
+import PhotosContainer from '../PhotosContainer'
+import { IPhotos } from '../../interfaces/IPhotos'
 
 interface TabPanelProps {
   children: ReactNode;
@@ -43,7 +45,7 @@ const a11yProps = (index: number):{id:string;'aria-controls':string} => ({
   'aria-controls': `simple-tabpanel-${index}`,
 })
 
-const BasicTabs:FC<{blogs:IBlogs[]}> = ({ blogs }) => {
+const BasicTabs:FC<{blogs:IBlogs[], photos:IPhotos[]}> = ({ blogs, photos }) => {
   const [value, setValue] = useState(0)
 
   const handleChange = (event: React.SyntheticEvent, newValue: number):void => {
@@ -62,7 +64,7 @@ const BasicTabs:FC<{blogs:IBlogs[]}> = ({ blogs }) => {
         <BlogsContainer blogs={blogs} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Photos
+        <PhotosContainer photos={photos} />
       </TabPanel>
     </Box>
   )
