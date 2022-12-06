@@ -7,6 +7,7 @@ import { DatabaseModule } from './database/database.module';
 import { BlogsModule } from './blogs/blogs.module';
 import { AuthModule } from './Auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { PhotosModule } from './photos/photos.module';
 
 @Global()
 @Module({
@@ -19,6 +20,7 @@ import { UsersModule } from './users/users.module';
     BlogsModule,
     AuthModule,
     UsersModule,
+    PhotosModule,
   ],
   providers: [],
 })

@@ -6,6 +6,7 @@ import {
   HasMany,
   PrimaryKey,
 } from 'sequelize-typescript';
+import { Photo } from 'src/photos/entities/photo.entity';
 import { Blog } from '../../blogs/entity/blog.entity';
 
 @Table
@@ -36,4 +37,7 @@ export class User extends Model {
 
   @HasMany(() => Blog)
   blogs: Blog[];
+
+  @HasMany(() => Photo)
+  photos: Photo[];
 }
