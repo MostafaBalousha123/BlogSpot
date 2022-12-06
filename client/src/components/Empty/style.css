@@ -1,0 +1,16 @@
+.empty-container{
+  width: max-content;
+  margin: 50px auto;
+}
+
+.empty-container img{
+  display: block;
+  width: 160px;
+  margin: 20px auto;
+
+}
+
+.empty-container h5{
+  margin: 20px auto;
+  width: max-content;
+}
