@@ -6,6 +6,7 @@
   min-height: 80vh;
   max-height: 90vh;
   overflow-y: scroll;
+  overflow-x: hidden;
   padding: 20px;
 }
 
@@ -18,12 +19,6 @@
   margin-top: 40px;
 }
 
-.img-details-container .test {
-  width: 100%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-}
 
 #modal-modal-title{
   width: 80%;
@@ -41,4 +36,15 @@
   background-color: rgb(5 160 129) !important;
   padding-left: 25px !important ;
   padding-right: 25px !important;
+}
+
+.img-details-container::-webkit-scrollbar {
+  width: 10px;
+}
+.img-details-container::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+.img-details-container::-webkit-scrollbar-thumb {
+  background: #1F2937;
+  border-radius: 10px;
 }

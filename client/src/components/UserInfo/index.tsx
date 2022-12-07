@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Avatar, Box, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import dayjs from 'dayjs'
 import { IUserInfo } from '../../interfaces/props/IUserInfo'
@@ -15,8 +15,8 @@ const UserInfo:FC<IUserInfo> = ({
       className="userInfo"
       onClick={() => { navigate(`/users/${id}`) }}
     >
-      <Avatar
-        sx={{ width: '40px', height: '40px' }}
+      <img
+        style={{ width: '40px', height: '40px', borderRadius: '50%' }}
         alt={username}
         src={profileImg}
       />
