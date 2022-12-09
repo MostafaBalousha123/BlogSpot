@@ -2,7 +2,7 @@ import { FC, useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import Navbar from '../../components/Navbar'
 import ProfileHeader from '../../components/ProfileHeader'
-import BasicTabs from '../../components/Taps'
+import ProfileTabs from '../../components/Taps'
 import ApiService from '../../services/apiServices'
 import './style.css'
 
@@ -53,7 +53,7 @@ export const Profile:FC = () => {
     <div>
       <Navbar />
       <ProfileHeader user={user} blogsCount={blogs.length} photosCount={photos.length} />
-      <BasicTabs blogs={blogs} photos={photos} />
+      <ProfileTabs blogs={blogs} photos={photos} setPhotos={setPhotos} />
     </div>
   )
 }

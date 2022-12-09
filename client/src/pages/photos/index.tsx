@@ -29,7 +29,7 @@ export const Photos:FC = () => {
   return (
     <Box>
       <Navbar />
-      <PhotoContainer photos={photos} />
+      <PhotoContainer photos={photos} setPhotos={setPhotos} />
     </Box>
   )
 }

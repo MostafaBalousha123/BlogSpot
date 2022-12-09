@@ -5,12 +5,10 @@ import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
-
 import './style.css'
 import BlogsContainer from '../BlogsContainer'
-import { IBlogs } from '../../interfaces/IBlogs'
 import PhotosContainer from '../PhotosContainer'
-import { IPhotos } from '../../interfaces/IPhotos'
+import { IProfileTaps } from '../../interfaces/props/ProfileTaps'
 
 interface TabPanelProps {
   children: ReactNode;
@@ -45,7 +43,7 @@ const a11yProps = (index: number):{id:string;'aria-controls':string} => ({
   'aria-controls': `simple-tabpanel-${index}`,
 })
 
-const BasicTabs:FC<{blogs:IBlogs[], photos:IPhotos[]}> = ({ blogs, photos }) => {
+const ProfileTabs:FC<IProfileTaps> = ({ blogs, photos, setPhotos }) => {
   const [value, setValue] = useState(0)
 
   const handleChange = (event: React.SyntheticEvent, newValue: number):void => {
@@ -64,10 +62,10 @@ const BasicTabs:FC<{blogs:IBlogs[], photos:IPhotos[]}> = ({ blogs, photos }) => 
         <BlogsContainer blogs={blogs} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <PhotosContainer photos={photos} />
+        <PhotosContainer photos={photos} setPhotos={setPhotos} />
       </TabPanel>
     </Box>
   )
 }
 
-export default BasicTabs
+export default ProfileTabs

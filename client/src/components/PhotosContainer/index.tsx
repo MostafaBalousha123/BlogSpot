@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useState, useEffect } from 'react'
 import { Box, Typography, Button } from '@mui/material'
 import Masonry from '@mui/lab/Masonry'
 import AddIcon from '@mui/icons-material/Add'
@@ -10,6 +10,8 @@ import './style.css'
 import { IPhotos } from '../../interfaces/IPhotos'
 import { isYourProfile } from '../../helpers/isYourProfile'
 import Empty from '../Empty'
+import AddPhotos from '../AddPhotos'
+import { IPhotoContainer } from '../../interfaces/props/PhotoContainer'
 
 const initPhoto = {
   id: 0,
@@ -23,15 +25,27 @@ const initPhoto = {
     profileImg: '',
   },
 }
-const PhotosContainer:FC<{photos:IPhotos[]}> = ({ photos }) => {
+
+const PhotosContainer:FC<IPhotoContainer> = ({ photos, setPhotos }) => {
   const [open, setOpen] = useState(false)
+  const [imgInfo, setImgInfo] = useState<IPhotos>(initPhoto)
+  const [newPhoto, setNewPhoto] = useState<IPhotos>(initPhoto)
+  const [openAddPhoto, setOpenAddPhoto] = useState(false)
+
+  const handleOpenAddPhoto = ():void => setOpenAddPhoto(true)
+  const handleCloseAddPhoto = ():void => setOpenAddPhoto(false)
+
   const handleOpen = ():void => setOpen(true)
   const handleClose = ():void => setOpen(false)
-  const [imgInfo, setImgInfo] = useState<IPhotos>(initPhoto)
-
   const params = useParams()
 
   const auth = useSelector((state:any) => state.user.user)
+
+  useEffect(() => {
+    if (newPhoto.id) {
+      setPhotos([newPhoto, ...photos])
+    }
+  }, [newPhoto])
 
   return (
     <Box className="photos-container">
@@ -42,7 +56,16 @@ const PhotosContainer:FC<{photos:IPhotos[]}> = ({ photos }) => {
         </Typography>
 
         {isYourProfile(params?.id, auth?.id)
-        && <Button variant="contained" startIcon={<AddIcon />}>Add Photo</Button>}
+        && (
+        <Button
+          variant="contained"
+          startIcon={<AddIcon />}
+          onClick={handleOpenAddPhoto}
+        >
+          Add Photo
+        </Button>
+        )}
+
       </Box>
       {
         photos.length
@@ -82,6 +105,11 @@ const PhotosContainer:FC<{photos:IPhotos[]}> = ({ photos }) => {
         imgInfo={imgInfo}
         handleClose={handleClose}
         open={open}
+      />
+      <AddPhotos
+        open={openAddPhoto}
+        handleClose={handleCloseAddPhoto}
+        setNewPhoto={setNewPhoto}
       />
     </Box>
   )

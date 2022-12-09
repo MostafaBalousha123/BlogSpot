@@ -1,0 +1,14 @@
+.add-photo-modal{
+  border-radius: 15px;
+}
+
+.add-photo-modal h5{
+  margin-bottom: 20px !important;
+}
+
+.add-photo-modal .text-field,
+.add-photo-modal button {
+  margin: 10px auto !important;
+  width: 100%;
+}
+
