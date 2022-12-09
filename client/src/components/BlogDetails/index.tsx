@@ -36,7 +36,7 @@ const BlogDetails:FC = () => {
             createdAt={blogInfo?.createdAt}
           />
         </Box>
-        <img src={blogInfo?.image} alt={blogInfo?.title} />
+        <img className="blog-img" src={blogInfo?.image} alt={blogInfo?.title} />
       </Box>
       <Box className="content">
         <Box dangerouslySetInnerHTML={createMarkup()} />

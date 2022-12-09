@@ -1,10 +1,10 @@
 import { FC } from 'react'
 import Navbar from '../../components/Navbar'
-import TextEditor from '../../components/TextEditor'
+import AddBlogsForm from '../../components/AddBlogsForm'
 
 export const AddBlogs:FC = () => (
   <div>
     <Navbar />
-    <TextEditor />
+    <AddBlogsForm />
   </div>
 )

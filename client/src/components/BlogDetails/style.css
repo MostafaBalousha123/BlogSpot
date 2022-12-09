@@ -22,7 +22,7 @@
   text-align: center;
 }
 
-.blog-header img{
+.blog-header img.blog-img{
   width: 100%;
   max-width: 700px;
   min-width: 300px;
@@ -34,4 +34,15 @@
   width: 70%;
   margin: 30px auto;
   padding: 20px;
+}
+
+.content img{
+  max-width: 85%;
+}
+
+.content .ql-video{
+  min-width:70% !important;
+  min-height: 400px !important;
+  display: block;
+  margin: 20px auto;
 }

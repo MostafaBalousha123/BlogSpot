@@ -1,0 +1,8 @@
+
+.upload-image-container{
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+  margin-top: 20px;
+  width: 70%;
+}

@@ -14,6 +14,7 @@ const BlogsContainer:FC<{blogs:IBlogs[]}> = ({ blogs }) => {
   const navigate = useNavigate()
   const params = useParams()
 
+  const isAuthenticated = useSelector((state:any) => state.user.isAuthenticated)
   const auth = useSelector((state:any) => state.user.user)
 
   return (
@@ -28,7 +29,17 @@ const BlogsContainer:FC<{blogs:IBlogs[]}> = ({ blogs }) => {
         </Typography>
 
         {isYourProfile(params?.id, auth?.id) && (
-        <Button variant="contained" startIcon={<AddIcon />} onClick={() => navigate('/blogs/add')}>
+        <Button
+          variant="contained"
+          startIcon={<AddIcon />}
+          onClick={() => {
+            if (isAuthenticated) {
+              navigate('/blogs/add')
+            } else {
+              navigate('/signin')
+            }
+          }}
+        >
           Add Blog
         </Button>
         )}

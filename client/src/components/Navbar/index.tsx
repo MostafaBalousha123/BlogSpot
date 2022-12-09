@@ -13,10 +13,12 @@ import './style.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { sxStyle } from './style'
 import { logout } from '../../hooks/user/userSlice'
-import { auth as test } from '../../hooks/user/actions'
+import { auth } from '../../hooks/user/actions'
 
 const Navbar:FC = () => {
   const isAuthenticated = useSelector((state:any) => state.user.isAuthenticated)
+  const user = useSelector((state:any) => state.user.user)
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -31,7 +33,7 @@ const Navbar:FC = () => {
 
   const handleLogout = ():void => {
     dispatch(logout())
-    test.logout()
+    auth.logout()
   }
   const {
     Search, SearchIconWrapper, StyledInputBase,
@@ -119,7 +121,7 @@ const Navbar:FC = () => {
               >
                 <MenuItem onClick={() => {
                   handleClose()
-                  navigate('/users/1')
+                  navigate(`/users/${user?.id}`)
                 }}
                 >
                   Profile

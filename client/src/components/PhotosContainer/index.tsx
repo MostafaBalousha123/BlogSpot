@@ -2,7 +2,7 @@ import { FC, useState, useEffect } from 'react'
 import { Box, Typography, Button } from '@mui/material'
 import Masonry from '@mui/lab/Masonry'
 import AddIcon from '@mui/icons-material/Add'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
 import Photo from '../Photo'
@@ -38,7 +38,9 @@ const PhotosContainer:FC<IPhotoContainer> = ({ photos, setPhotos }) => {
   const handleOpen = ():void => setOpen(true)
   const handleClose = ():void => setOpen(false)
   const params = useParams()
+  const navigate = useNavigate()
 
+  const isAuthenticated = useSelector((state:any) => state.user.isAuthenticated)
   const auth = useSelector((state:any) => state.user.user)
 
   useEffect(() => {
@@ -62,7 +64,13 @@ const PhotosContainer:FC<IPhotoContainer> = ({ photos, setPhotos }) => {
         <Button
           variant="contained"
           startIcon={<AddIcon />}
-          onClick={handleOpenAddPhoto}
+          onClick={() => {
+            if (isAuthenticated) {
+              handleOpenAddPhoto()
+            } else {
+              navigate('/signin')
+            }
+          }}
         >
           Add Photo
         </Button>

@@ -3,6 +3,7 @@ import { FC, useState } from 'react'
 import { toast } from 'react-toastify'
 import PhotoCamera from '@mui/icons-material/PhotoCamera'
 import { FormikProps } from 'formik'
+import './style.css'
 
 const UploadImage:FC<{formik:FormikProps<any>}> = ({ formik }) => {
   const [url, setUrl] = useState('')
@@ -29,10 +30,7 @@ const UploadImage:FC<{formik:FormikProps<any>}> = ({ formik }) => {
 
   return (
     <Box>
-      <Box sx={{
-        display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '10px',
-      }}
-      >
+      <Box className="upload-image-container">
         <Button
           color="primary"
           startIcon={<PhotoCamera />}
@@ -54,7 +52,7 @@ const UploadImage:FC<{formik:FormikProps<any>}> = ({ formik }) => {
           />
         </Button>
         {loader && <CircularProgress /> }
-        { url && <img width="60px" src={url} alt="test" />}
+        { url && <img width="100px" src={url} alt="test" />}
       </Box>
 
     </Box>

@@ -2,7 +2,6 @@ import { FC } from 'react'
 import Box from '@mui/material/Box'
 import { Typography, Modal, Button } from '@mui/material'
 import { useFormik } from 'formik'
-import * as yup from 'yup'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -11,27 +10,18 @@ import './style.css'
 import { IAddPhotos } from '../../interfaces/props/IAddPhotos'
 import UploadImage from '../UploadImage'
 import ApiService from '../../services/apiServices'
+import { validationSchema } from '../../validation/AddPhoto'
 
 const style = {
   position: 'absolute' as 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: 500,
   bgcolor: '#111827',
   boxShadow: 24,
   p: 5,
 }
-
-const validationSchema = yup.object({
-  title: yup
-    .string()
-    .required('title is required'),
-  image: yup
-    .string()
-    .matches(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|jpeg)/, 'enter correct image')
-    .required('image is required'),
-})
 
 const AddPhotos:FC<IAddPhotos> = ({ open, handleClose, setNewPhoto }) => {
   const isAuthenticated = useSelector((state:any) => state.user.isAuthenticated)
@@ -91,25 +81,18 @@ const AddPhotos:FC<IAddPhotos> = ({ open, handleClose, setNewPhoto }) => {
               helperText={formik.touched.title && formik.errors.title}
             />
 
-            {/* <CustomTextField
-              label="image"
-              type="text"
-              size="small"
-              variant="outlined"
-              fullWidth
-              className="text-field"
-              color="primary"
-              InputLabelProps={{
-                style: { color: '#ecececae' },
-              }}
-              name="image"
-              value={formik.values.image}
-              onChange={formik.handleChange}
-              error={formik.touched.image && Boolean(formik.errors.image)}
-              helperText={formik.touched.image && formik.errors.image}
-            /> */}
             <UploadImage formik={formik} />
-            <Button type="submit" variant="contained">Add Photo</Button>
+            <Button
+              type="submit"
+              variant="contained"
+              onClick={() => {
+                if (formik.values.image === '') {
+                  toast.error('image is required')
+                }
+              }}
+            >
+              Add Photo
+            </Button>
           </form>
         </Box>
       </Modal>
