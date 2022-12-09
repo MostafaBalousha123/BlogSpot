@@ -16,19 +16,15 @@ const BlogsContainer:FC<{blogs:IBlogs[]}> = ({ blogs }) => {
 
   const auth = useSelector((state:any) => state.user.user)
 
-  // const isYourProfile = ():boolean => {
-  //   if (!params.id || (params?.id && auth?.id && parseInt(params?.id, 10) === auth?.id)) {
-  //     return true
-  //   }
-  //   return false
-  // }
-
   return (
     <Box>
       <Box className="add-blogs-container">
         <Typography variant="h5">
-          {isYourProfile(params?.id, auth?.id)
-            ? 'Your Blogs' : 'All Blogs'}
+          {params?.id
+            ? isYourProfile(params?.id, auth?.id)
+              ? 'Your Blogs' : 'All Blogs'
+            : 'All Blogs'}
+
         </Typography>
 
         {isYourProfile(params?.id, auth?.id) && (

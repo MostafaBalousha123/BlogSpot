@@ -51,8 +51,10 @@ const PhotosContainer:FC<IPhotoContainer> = ({ photos, setPhotos }) => {
     <Box className="photos-container">
       <Box className="photos-container-header">
         <Typography variant="h5">
-          {isYourProfile(params?.id, auth?.id)
-            ? 'Your Photos' : 'All Photos'}
+          {params?.id
+            ? isYourProfile(params?.id, auth?.id)
+              ? 'Your Photos' : 'All Photos'
+            : 'All Photos'}
         </Typography>
 
         {isYourProfile(params?.id, auth?.id)
