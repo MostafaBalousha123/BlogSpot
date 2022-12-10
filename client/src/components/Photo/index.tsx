@@ -1,11 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { FC } from 'react'
 import {
-  Box, Typography, Modal,
+  Box, Typography, Modal, Button,
 } from '@mui/material'
+import { saveAs } from 'file-saver'
 import './style.css'
 import SuggestedPhotos from '../SuggestedPhotos'
 import UserInfo from '../UserInfo'
+import { IPhotos } from '../../interfaces/IPhotos'
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -19,36 +21,50 @@ const style = {
 }
 
   interface test {
-    imgInfo:any,
+    imgInfo:IPhotos,
     handleClose:any,
     open:boolean
   }
 
-const Photo:FC<test> = ({ imgInfo, handleClose, open }) => (
-  <Box className="card-photo">
-    <Modal
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-    >
-      <Box sx={style} className="img-details-container">
+const Photo:FC<test> = ({ imgInfo, handleClose, open }) => {
+  const downloadImage = ():void => {
+    saveAs(imgInfo.image, 'image.jpg') // Put your image url here.
+  }
+  return (
+    <Box className="card-photo">
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style} className="img-details-container">
 
-        <UserInfo
-          id={1}
-          username="user?.username"
-          profileImg="user?.profileImg"
-          createdAt="createdAt"
-        />
+          <Box className="img-details-header">
+            <UserInfo
+              id={1}
+              username={imgInfo.user?.username}
+              profileImg={imgInfo.user?.profileImg}
+              createdAt={imgInfo.createdAt}
+            />
+            <Button
+              variant="contained"
+              onClick={downloadImage}
+              className="download-btn"
+            >
+              Download
+            </Button>
+          </Box>
 
-        <Typography id="modal-modal-title" variant="h6">
-          {imgInfo.imgTitle}
-        </Typography>
-        <img src={imgInfo.imgSrc} alt={imgInfo.imgTitle} />
-        <SuggestedPhotos />
-      </Box>
-    </Modal>
+          <Typography id="modal-modal-title" variant="h6">
+            {imgInfo.title}
+          </Typography>
+          <img src={imgInfo.image} alt={imgInfo.title} />
+          <SuggestedPhotos />
+        </Box>
+      </Modal>
 
-  </Box>
-)
+    </Box>
+  )
+}
 export default Photo

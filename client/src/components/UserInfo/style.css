@@ -5,6 +5,10 @@
   cursor: pointer;
 }
 
+.userInfo img{
+margin: 0 !important;
+}
+
 .userInfo .username{
   font-size: 17px;
   margin: 0 !important;

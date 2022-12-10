@@ -1,58 +1,125 @@
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable max-len */
-import { FC, useState } from 'react'
-import { Box } from '@mui/material'
+import { FC, useState, useEffect } from 'react'
+import { Box, Typography, Button } from '@mui/material'
 import Masonry from '@mui/lab/Masonry'
+import AddIcon from '@mui/icons-material/Add'
+import { useParams, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { v4 as uuidv4 } from 'uuid'
 import Photo from '../Photo'
 import './style.css'
+import { IPhotos } from '../../interfaces/IPhotos'
+import { isYourProfile } from '../../helpers/isYourProfile'
+import Empty from '../Empty'
+import AddPhotos from '../AddPhotos'
+import { IPhotoContainer } from '../../interfaces/props/PhotoContainer'
 
-const itemData = [
-  {
-    img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
-    title: 'Fern',
-    description: 'description',
+const initPhoto = {
+  id: 0,
+  title: '',
+  image: '',
+  userId: 0,
+  createdAt: '',
+  updatedAt: '',
+  user: {
+    username: '',
+    profileImg: '',
   },
-]
+}
 
-const PhotosContainer:FC = () => {
+const PhotosContainer:FC<IPhotoContainer> = ({ photos, setPhotos }) => {
   const [open, setOpen] = useState(false)
+  const [imgInfo, setImgInfo] = useState<IPhotos>(initPhoto)
+  const [newPhoto, setNewPhoto] = useState<IPhotos>(initPhoto)
+  const [openAddPhoto, setOpenAddPhoto] = useState(false)
+
+  const handleOpenAddPhoto = ():void => setOpenAddPhoto(true)
+  const handleCloseAddPhoto = ():void => setOpenAddPhoto(false)
+
   const handleOpen = ():void => setOpen(true)
   const handleClose = ():void => setOpen(false)
-  const [imgInfo, setImgInfo] = useState<any>({})
+  const params = useParams()
+  const navigate = useNavigate()
+
+  const isAuthenticated = useSelector((state:any) => state.user.isAuthenticated)
+  const auth = useSelector((state:any) => state.user.user)
+
+  useEffect(() => {
+    if (newPhoto.id) {
+      setPhotos([newPhoto, ...photos])
+    }
+  }, [newPhoto])
 
   return (
     <Box className="photos-container">
-      <Masonry columns={3} spacing={2}>
-        {itemData.map((item, index) => (
-          <Box
-            key={index}
-            onClick={() => {
-              handleOpen()
-              setImgInfo({
-                imgSrc: item.img,
-                imgTitle: item.title,
-              })
-            }}
-          >
-            <img
-              src={`${item.img}?w=1000&auto=format`}
-              srcSet={`${item.img}?w=1000&auto=format&dpr=2 2x`}
-              alt={item.title}
-              loading="lazy"
-              style={{
-                borderBottomLeftRadius: 4,
-                borderBottomRightRadius: 4,
-                display: 'block',
-                width: '100%',
-              }}
+      <Box className="photos-container-header">
+        <Typography variant="h5">
+          {params?.id
+            ? isYourProfile(params?.id, auth?.id)
+              ? 'Your Photos' : 'All Photos'
+            : 'All Photos'}
+        </Typography>
+
+        {isYourProfile(params?.id, auth?.id)
+        && (
+        <Button
+          variant="contained"
+          startIcon={<AddIcon />}
+          onClick={() => {
+            if (isAuthenticated) {
+              handleOpenAddPhoto()
+            } else {
+              navigate('/signin')
+            }
+          }}
+        >
+          Add Photo
+        </Button>
+        )}
+
+      </Box>
+      {
+        photos.length
+          ? (
+            <Masonry columns={3} spacing={2}>
+              {photos.map((item:IPhotos) => (
+                <Box
+                  key={uuidv4()}
+                  onClick={() => {
+                    handleOpen()
+                    setImgInfo(item)
+                  }}
+                >
+                  <img
+                    src={`${item.image}?w=1000&auto=format`}
+                    srcSet={`${item.image}?w=1000&auto=format&dpr=2 2x`}
+                    alt={item.title}
+                    loading="lazy"
+                    style={{
+                      borderBottomLeftRadius: 4,
+                      borderBottomRightRadius: 4,
+                      display: 'block',
+                      width: '100%',
+                    }}
+                  />
+                </Box>
+              ))}
+            </Masonry>
+          ) : (
+            <Empty message={isYourProfile(params?.id, auth?.id)
+              ? 'Post your first Photos' : 'Nothing posted yet'}
             />
-          </Box>
-        ))}
-      </Masonry>
+          )
+            }
+
       <Photo
         imgInfo={imgInfo}
         handleClose={handleClose}
         open={open}
+      />
+      <AddPhotos
+        open={openAddPhoto}
+        handleClose={handleCloseAddPhoto}
+        setNewPhoto={setNewPhoto}
       />
     </Box>
   )

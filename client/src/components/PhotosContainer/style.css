@@ -2,3 +2,10 @@
   width: 90%;
   margin: 0 auto;
 }
+
+.photos-container-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px auto 40px;
+}

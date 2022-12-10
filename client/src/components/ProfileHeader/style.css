@@ -34,3 +34,8 @@
   margin: 10px 0 30px ;
   width: 80%;
 }
+.edit-profile-btn{
+  background-color: #1F2937 !important;
+  display: block !important;
+  margin: 20px  0 !important;
+}

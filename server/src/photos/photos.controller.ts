@@ -8,12 +8,14 @@ import {
   Delete,
   UseGuards,
   ParseIntPipe,
+  Query,
 } from '@nestjs/common';
 import { PhotosService } from './photos.service';
 import { CreatePhotoDto } from './dto/create-photo.dto';
 import { UpdatePhotoDto } from './dto/update-photo.dto';
 import { getUser } from '../Auth/decorator';
 import { JwtAuthGuard } from '../Auth/strategy';
+import { findAllQueryDTO } from './dto/find-all-query';
 
 @Controller('photos')
 export class PhotosController {
@@ -29,8 +31,9 @@ export class PhotosController {
   }
 
   @Get()
-  findAll() {
-    return this.photosService.findAll();
+  findAll(@Query() query: findAllQueryDTO) {
+    const { userId } = query;
+    return this.photosService.findAll(userId);
   }
 
   @Get(':id')
