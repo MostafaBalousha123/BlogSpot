@@ -16,6 +16,8 @@ import { join } from 'path';
   imports: [
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', '..', 'client', 'build'),
+      // renderPath: '*',
+      // exclude: ['/api*'],
     }),
     ConfigModule.forRoot({ isGlobal: true }),
     DatabaseModule,

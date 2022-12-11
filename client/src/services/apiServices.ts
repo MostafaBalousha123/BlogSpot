@@ -6,7 +6,9 @@ class ApiService {
   private static axios = axios
 
   public static init(): void {
-    this.axios.defaults.baseURL = process.env.REACT_APP_BASE_URL
+    const API_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_BASE_URL
+      : 'http://localhost:8080'
+    this.axios.defaults.baseURL = API_URL
     this.axios.interceptors.response.use((res) => res, (err) => {
       if (err?.response?.status >= 400 && err?.response?.status < 500
         && err?.response?.status !== 401 && err.config.url !== '/api/v1/users/me') {
