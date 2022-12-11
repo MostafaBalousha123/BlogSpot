@@ -21,6 +21,7 @@ export const databaseProviders = [
           break;
         case PRODUCTION:
           config = databaseConfig.production;
+          console.log(databaseConfig.production);
           break;
         default:
           config = databaseConfig.development;
