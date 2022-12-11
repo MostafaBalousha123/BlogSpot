@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react'
-import { Box } from '@mui/material'
+import { Box, CircularProgress } from '@mui/material'
 import Navbar from '../../components/Navbar'
 import PhotoContainer from '../../components/PhotosContainer'
 import ApiService from '../../services/apiServices'
@@ -20,16 +20,31 @@ const initPhoto = {
 
 export const Photos:FC = () => {
   const [photos, setPhotos] = useState<IPhotos[]>([initPhoto])
+  const [loader, setLoader] = useState<boolean>(true)
+
   useEffect(() => {
     (async () => {
       const result = await ApiService.get('/api/v1/photos')
-      if (result.status === 200) setPhotos(result.data)
+      if (result.status === 200) {
+        setPhotos(result.data)
+        setLoader(false)
+      }
     })()
   }, [])
   return (
     <Box>
       <Navbar />
-      <PhotoContainer photos={photos} setPhotos={setPhotos} />
+      {loader ? (
+        <CircularProgress
+          sx={{
+            margin: '250px auto',
+            display: 'block',
+          }}
+          color="secondary"
+        />
+      )
+        : <PhotoContainer photos={photos} setPhotos={setPhotos} />}
+
     </Box>
   )
 }
