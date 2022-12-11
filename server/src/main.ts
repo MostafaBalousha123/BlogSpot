@@ -6,7 +6,7 @@ import { json } from 'express';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const port = parseInt(process.env.PORT, 10) || 8080;
+  const port = process.env.PORT || 8080;
   const Config = new ConfigService();
 
   app.useGlobalPipes(
@@ -20,6 +20,6 @@ async function bootstrap() {
   app.enableCors({ origin: [Config.get('CLIENT')] });
   app.setGlobalPrefix('/api/v1');
   await app.listen(port);
-  console.log('server is running');
+  console.log('server is running', port);
 }
 bootstrap();
