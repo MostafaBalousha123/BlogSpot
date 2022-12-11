@@ -17,7 +17,8 @@ async function bootstrap() {
 
   app.use(json({ limit: '5mb' }));
 
-  app.enableCors({ origin: [Config.get('CLIENT')] });
+  // app.enableCors({ origin: [Config.get('CLIENT')] });
+  app.enableCors();
   app.setGlobalPrefix('/api/v1');
 
   await app.listen(port);
