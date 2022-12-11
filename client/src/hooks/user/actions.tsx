@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import { JwtServices } from '../../services/jwtServices'
 import ApiService from '../../services/apiServices'
 
@@ -12,10 +13,11 @@ export const auth = {
     }
     return {}
   },
-  signup: async (payload:object):Promise<void> => {
+  signup: async (payload:object):Promise<any> => {
     try {
       const user = await ApiService.post('/api/v1/auth/signup', payload)
       JwtServices.setToken(user.data.access_token)
+      return user
     } catch (err) {
       console.log(err)
     }

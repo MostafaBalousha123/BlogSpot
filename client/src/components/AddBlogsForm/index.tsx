@@ -27,7 +27,6 @@ const AddBlogsForm:FC = () => {
   const [content, setContent] = useState<string>('')
 
   const handleAddBlog = async (values:any):Promise<void> => {
-    console.log(content)
     if (isAuthenticated) {
       const result = await ApiService.post('/api/v1/blogs', { content, ...values })
       if (result.status === 201) {
