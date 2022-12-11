@@ -28,6 +28,7 @@ export const databaseProviders = [
       const sequelize = new Sequelize(config);
       sequelize.addModels([Blog, User, Photo]);
       await sequelize.sync({ force: false });
+      console.log('database connected');
       return sequelize;
     },
   },
