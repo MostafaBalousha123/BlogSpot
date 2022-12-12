@@ -22,6 +22,7 @@ export class PhotosService {
     return await this.photoRepository.findAll({
       include: { model: User, attributes: ['username', 'profileImg'] },
       where: whereObj,
+      order: [['createdAt', 'DESC']],
     });
   }
 
