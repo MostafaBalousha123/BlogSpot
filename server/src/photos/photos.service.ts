@@ -33,7 +33,10 @@ export class PhotosService {
   }
 
   async update(id: number, dto: UpdatePhotoDto) {
-    return await this.photoRepository.update(dto, { where: { id } });
+    return await this.photoRepository.update(dto, {
+      where: { id },
+      returning: true,
+    });
   }
 
   async remove(userId: number, id: number) {

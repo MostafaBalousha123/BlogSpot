@@ -6,4 +6,6 @@ export interface IPhotoDetails {
   handleClose:any,
   open:boolean,
   setDeletedIds:Dispatch<SetStateAction<number[]>>
+  setUpdatedPhoto:Dispatch<SetStateAction<Partial<IPhotos>>>
+  updatedPhoto:Partial<IPhotos>
 }

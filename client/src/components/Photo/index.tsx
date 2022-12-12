@@ -11,6 +11,7 @@ import SuggestedPhotos from '../SuggestedPhotos'
 import UserInfo from '../UserInfo'
 import ApiService from '../../services/apiServices'
 import { IPhotoDetails } from '../../interfaces/props/IPhotoDetails'
+import EditPhoto from './editPhoto'
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -24,11 +25,15 @@ const style = {
 }
 
 const Photo:FC<IPhotoDetails> = ({
-  imgInfo, handleClose, open, setDeletedIds,
+  imgInfo, handleClose, open, setDeletedIds, setUpdatedPhoto, updatedPhoto,
 }) => {
   const isAuthenticated = useSelector((state:any) => state.user.isAuthenticated)
   const auth = useSelector((state:any) => state.user.user)
   const [openConfirmDelete, setOpenConfirmDelete] = useState<boolean>(false)
+  const [openAddPhoto, setOpenAddPhoto] = useState(false)
+
+  const handleOpenEditPhoto = ():void => setOpenAddPhoto(true)
+  const handleCloseEditPhoto = ():void => setOpenAddPhoto(false)
 
   const handleOpenConfirm = ():void => {
     setOpenConfirmDelete(true)
@@ -78,7 +83,13 @@ const Photo:FC<IPhotoDetails> = ({
                 >
                   delete
                 </Button>
-                <Button variant="contained" sx={{ backgroundColor: '#1F2937' }}>edit</Button>
+                <Button
+                  variant="contained"
+                  sx={{ backgroundColor: '#1F2937', ':hover': { backgroundColor: '#1F2941' } }}
+                  onClick={handleOpenEditPhoto}
+                >
+                  edit
+                </Button>
               </Box>
               ) }
               <Button
@@ -123,10 +134,17 @@ const Photo:FC<IPhotoDetails> = ({
             </DialogActions>
           </Dialog>
 
+          <EditPhoto
+            open={openAddPhoto}
+            handleClose={handleCloseEditPhoto}
+            setUpdatedPhoto={setUpdatedPhoto}
+            imgInfo={imgInfo}
+          />
+
           <Typography id="modal-modal-title" variant="h6">
-            {imgInfo.title}
+            {updatedPhoto.title ? updatedPhoto.title : imgInfo.title}
           </Typography>
-          <img src={imgInfo.image} alt={imgInfo.title} />
+          <img src={updatedPhoto.image ? updatedPhoto.image : imgInfo.image} alt={imgInfo.title} />
           <SuggestedPhotos />
         </Box>
       </Modal>

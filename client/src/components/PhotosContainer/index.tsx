@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { FC, useState, useEffect } from 'react'
 import { Box, Typography, Button } from '@mui/material'
 import Masonry from '@mui/lab/Masonry'
@@ -32,6 +33,7 @@ const PhotosContainer:FC<IPhotoContainer> = ({ photos, setPhotos }) => {
   const [newPhoto, setNewPhoto] = useState<IPhotos>(initPhoto)
   const [openAddPhoto, setOpenAddPhoto] = useState(false)
   const [deletedIds, setDeletedIds] = useState<number[]>([])
+  const [updatedPhoto, setUpdatedPhoto] = useState<Partial<IPhotos>>(initPhoto)
 
   const handleOpenAddPhoto = ():void => setOpenAddPhoto(true)
   const handleCloseAddPhoto = ():void => setOpenAddPhoto(false)
@@ -92,9 +94,9 @@ const PhotosContainer:FC<IPhotoContainer> = ({ photos, setPhotos }) => {
                     }}
                   >
                     <img
-                      src={`${item.image}?w=1000&auto=format`}
-                      srcSet={`${item.image}?w=1000&auto=format&dpr=2 2x`}
-                      alt={item.title}
+                      src={`${updatedPhoto.id === item.id ? updatedPhoto.image : item.image}?w=800&auto=format`}
+                      srcSet={`${updatedPhoto.id === item.id ? updatedPhoto.image : item.image}?w=800&auto=format&dpr=2 2x`}
+                      alt={updatedPhoto.id === item.id ? updatedPhoto.title : item.title}
                       loading="lazy"
                       style={{
                         borderBottomLeftRadius: 4,
@@ -118,6 +120,8 @@ const PhotosContainer:FC<IPhotoContainer> = ({ photos, setPhotos }) => {
         handleClose={handleClose}
         open={open}
         setDeletedIds={setDeletedIds}
+        setUpdatedPhoto={setUpdatedPhoto}
+        updatedPhoto={updatedPhoto}
       />
       <AddPhotos
         open={openAddPhoto}
