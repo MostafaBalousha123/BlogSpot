@@ -32,6 +32,7 @@ export class BlogsService {
         attributes: ['username', 'profileImg'],
       },
       where: whereObj,
+      order: [['createdAt', 'DESC']],
     });
   }
 

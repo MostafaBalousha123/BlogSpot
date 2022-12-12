@@ -22,6 +22,7 @@ export class PhotosService {
     return await this.photoRepository.findAll({
       include: { model: User, attributes: ['username', 'profileImg'] },
       where: whereObj,
+      order: [['createdAt', 'DESC']],
     });
   }
 
@@ -33,7 +34,10 @@ export class PhotosService {
   }
 
   async update(id: number, dto: UpdatePhotoDto) {
-    return await this.photoRepository.update(dto, { where: { id } });
+    return await this.photoRepository.update(dto, {
+      where: { id },
+      returning: true,
+    });
   }
 
   async remove(userId: number, id: number) {

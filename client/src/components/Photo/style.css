@@ -38,6 +38,19 @@
   padding-right: 25px !important;
 }
 
+.photo-operations{
+  width: max-content;
+  display: inline;
+  margin: 0 5px
+}
+
+.photo-operations button {
+  margin: 0 5px;
+  padding-left: 10px !important ;
+  padding-right: 10px !important;
+  width: 140px !important;
+}
+
 .img-details-container::-webkit-scrollbar {
   width: 10px;
 }
