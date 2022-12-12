@@ -31,6 +31,7 @@ const PhotosContainer:FC<IPhotoContainer> = ({ photos, setPhotos }) => {
   const [imgInfo, setImgInfo] = useState<IPhotos>(initPhoto)
   const [newPhoto, setNewPhoto] = useState<IPhotos>(initPhoto)
   const [openAddPhoto, setOpenAddPhoto] = useState(false)
+  const [deletedIds, setDeletedIds] = useState<number[]>([])
 
   const handleOpenAddPhoto = ():void => setOpenAddPhoto(true)
   const handleCloseAddPhoto = ():void => setOpenAddPhoto(false)
@@ -81,28 +82,29 @@ const PhotosContainer:FC<IPhotoContainer> = ({ photos, setPhotos }) => {
         photos.length
           ? (
             <Masonry columns={3} spacing={2}>
-              {photos.map((item:IPhotos) => (
-                <Box
-                  key={uuidv4()}
-                  onClick={() => {
-                    handleOpen()
-                    setImgInfo(item)
-                  }}
-                >
-                  <img
-                    src={`${item.image}?w=1000&auto=format`}
-                    srcSet={`${item.image}?w=1000&auto=format&dpr=2 2x`}
-                    alt={item.title}
-                    loading="lazy"
-                    style={{
-                      borderBottomLeftRadius: 4,
-                      borderBottomRightRadius: 4,
-                      display: 'block',
-                      width: '100%',
+              {photos.filter((data:IPhotos) => !deletedIds?.includes(data.id))
+                .map((item:IPhotos) => (
+                  <Box
+                    key={uuidv4()}
+                    onClick={() => {
+                      handleOpen()
+                      setImgInfo(item)
                     }}
-                  />
-                </Box>
-              ))}
+                  >
+                    <img
+                      src={`${item.image}?w=1000&auto=format`}
+                      srcSet={`${item.image}?w=1000&auto=format&dpr=2 2x`}
+                      alt={item.title}
+                      loading="lazy"
+                      style={{
+                        borderBottomLeftRadius: 4,
+                        borderBottomRightRadius: 4,
+                        display: 'block',
+                        width: '100%',
+                      }}
+                    />
+                  </Box>
+                ))}
             </Masonry>
           ) : (
             <Empty message={isYourProfile(params?.id, auth?.id)
@@ -115,6 +117,7 @@ const PhotosContainer:FC<IPhotoContainer> = ({ photos, setPhotos }) => {
         imgInfo={imgInfo}
         handleClose={handleClose}
         open={open}
+        setDeletedIds={setDeletedIds}
       />
       <AddPhotos
         open={openAddPhoto}
