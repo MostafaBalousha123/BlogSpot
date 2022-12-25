@@ -1,3 +1,3 @@
-# Blogs_nestJs
+# BlogSpot
 
 https://mostafa-blogs.onrender.com
